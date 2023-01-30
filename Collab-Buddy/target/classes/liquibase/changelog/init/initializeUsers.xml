@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="initializeUsers" author="vmoraru" context="dev">
+        <!-- Dev user -->
+        <insert tableName="administration">
+            <column name="ID" value="5766ae9f-97c0-42bc-944d-0ae2f91c20a8"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="PASSWORD" value="admin"/>
+            <column name="ENABLED" valueBoolean="true"/>
+            <column name="LOCALE" value="en"/>
+            <column name="GENDATE" value="2023-02-29 09:50:00"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m
+application:
+  threadexecutors: 50
+  max-nr-of-retries: 3
+  logging:
+    path: src\main\resources\logs\
+    file-extension: log
+    max-file-size: 5MB
+    max-history: 90
+    default-file-name: CollabBuddyApp
+logging:
+  level:
+    root: INFO
+spring:
+  liquibase:
+    change-log: classpath:/liquibase/changelog/db.changelog-master.xml
+    default-schema: public
+  datasource:
+    url: jdbc:postgresql://localhost:5432/collab_buddy
+    username: anniegavr
+    password: jtom
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
