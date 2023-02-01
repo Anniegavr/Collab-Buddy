@@ -1,48 +1,26 @@
 package com.collab.buddy.CollabBuddy.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-  private final AdminServerProperties adminServer;
-
-  public WebSecurityConfig(AdminServerProperties adminServer) {
-    this.adminServer = adminServer;
-  }
-
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    SavedRequestAwareAuthenticationSuccessHandler successHandler =
-            new SavedRequestAwareAuthenticationSuccessHandler();
-    successHandler.setTargetUrlParameter("redirectTo");
-    successHandler.setDefaultTargetUrl(this.adminServer.getContextPath() + "/");
-
-    http
-            .authorizeRequests()
-            .antMatchers(this.adminServer.getContextPath() + "/assets/**").permitAll()
-            .antMatchers(this.adminServer.getContextPath() + "/login").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
-            .loginPage(this.adminServer.getContextPath() + "/login")
-            .successHandler(successHandler)
-            .and()
-            .logout()
-            .logoutUrl(this.adminServer.getContextPath() + "/logout")
-            .and()
-            .httpBasic()
-            .and()
-            .csrf()
-            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-            .ignoringRequestMatchers(
-                    new AntPathRequestMatcher(this.adminServer.getContextPath() +
-                                                      "/instances", HttpMethod.POST.toString()),
-                    new AntPathRequestMatcher(this.adminServer.getContextPath() +
-                                                      "/instances/*", HttpMethod.DELETE.toString()),
-                    new AntPathRequestMatcher(this.adminServer.getContextPath() + "/actuator/**"))
-            .and()
-            .rememberMe()
-            .key(UUID.randomUUID().toString())
-            .tokenValiditySeconds(1209600);
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.authorizeHttpRequests().requestMatchers("/student").hasRole("STUDENT").and().formLogin();
+    http.authorizeHttpRequests().requestMatchers("/teacher").hasRole("TEACHER").and().formLogin();
+    http.authorizeHttpRequests().requestMatchers("/admin").hasRole("ADMIN").and().formLogin();
+    http.authorizeHttpRequests().requestMatchers("/guest").hasRole("GUEST").and().formLogin();
+    http.authorizeHttpRequests().requestMatchers("/**").hasRole("DEV").and().formLogin();
+    http.authorizeHttpRequests().requestMatchers("/actuator").hasRole("ADMIN").and().formLogin();
     return http.build();
   }
 }

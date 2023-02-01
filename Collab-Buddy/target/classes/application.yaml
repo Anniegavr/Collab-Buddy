@@ -16,6 +16,19 @@ logging:
   level:
     root: INFO
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+        username: admin
+        password: admin
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+      routes:
+        endpoints: env, metrics, trace, jolokia, info, configprops
   liquibase:
     change-log: classpath:/liquibase/changelog/db.changelog-master.xml
     default-schema: public
@@ -31,3 +44,15 @@ spring:
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  security:
+    user:
+      name: client
+      password: client
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, beans, loggers
+  endpoint:
+    health:
+      show-details: always
