@@ -23,7 +23,7 @@ public class Administrator {
             strategy = GenerationType.SEQUENCE,
             generator = "admin_id_sequence"
     )
-    private Long teacherId;
+    private Long adminId;
 
     @Column(name = "name", nullable = false)
     private String name;
