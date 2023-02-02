@@ -56,3 +56,7 @@ management:
   endpoint:
     health:
       show-details: always
+anniegavr:
+  app:
+    jwtSecret = someSecretKey
+    jwtExpirationMs = 86400000
