@@ -9,8 +9,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Getter
-@Setter
 public class TeacherServiceImpl implements TeacherService {
 
     private final TeacherRepository teacherRepository;

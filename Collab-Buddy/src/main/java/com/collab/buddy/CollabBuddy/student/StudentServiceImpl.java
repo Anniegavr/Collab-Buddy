@@ -10,8 +10,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Getter
-@Setter
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
