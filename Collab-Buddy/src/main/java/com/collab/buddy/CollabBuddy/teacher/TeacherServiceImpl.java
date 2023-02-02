@@ -1,4 +1,5 @@
 package com.collab.buddy.CollabBuddy.teacher;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TeacherServiceImpl implements TeacherService {
 
     private final TeacherRepository teacherRepository;

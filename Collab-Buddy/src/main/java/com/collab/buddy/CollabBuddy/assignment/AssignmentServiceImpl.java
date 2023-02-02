@@ -1,5 +1,6 @@
 package com.collab.buddy.CollabBuddy.assignment;
 
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -9,8 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Getter
-@Setter
+@Transactional
 public class AssignmentServiceImpl implements AssignmentService {
 
     private final AssignmentRepository assignmentRepository;

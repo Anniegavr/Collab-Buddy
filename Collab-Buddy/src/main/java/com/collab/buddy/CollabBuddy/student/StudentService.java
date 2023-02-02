@@ -1,5 +1,7 @@
 package com.collab.buddy.CollabBuddy.student;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 

@@ -1,4 +1,5 @@
 package com.collab.buddy.CollabBuddy.administrator;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AdministratorServiceImpl implements AdministratorService{
     private final AdministratorRepository administratorRepository;
 
