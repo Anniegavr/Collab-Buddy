@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.collab.buddy</groupId>
-	<artifactId>Collab_Buddy</artifactId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Collab_Buddy</name>
 	<description>JTOM project</description>
