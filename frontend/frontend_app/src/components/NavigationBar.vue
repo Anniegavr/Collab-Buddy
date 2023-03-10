@@ -1,12 +1,18 @@
 <template>
   <nav id="menu">
-    <p id="menu-title">Courses</p>
+    <p id="menu-title">{{ title }}</p>
   </nav>
 </template>
 
 <script>
 export default {
-  name: "NavigationBar"
+  name: "NavigationBar",
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
 

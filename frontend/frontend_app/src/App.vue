@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavigationBar title="Not a course"/>
+    <NavigationBar :title="pageTitle"/>
     <router-view />
   </div>
 </template>
@@ -12,9 +12,24 @@ export default {
   name: 'App',
   components: {
     NavigationBar
+  },
+  computed: {
+    pageTitle() {
+      switch (this.$route.path) {
+        case '/login':
+          return 'Login';
+        case '/signup':
+          return 'Sign Up';
+        case '/home':
+          return 'Home';
+        default:
+          return 'Not a course';
+      }
+    }
   }
 }
 </script>
+
 
 <style>
 #app {
