@@ -41,7 +41,7 @@ public class AuthController {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
