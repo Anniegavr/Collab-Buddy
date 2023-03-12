@@ -1,18 +1,24 @@
 <template>
   <div>
     <NavigationBar :title="pageTitle"/>
+    <SlideMenu v-if="showSlideMenu" />
     <router-view />
   </div>
 </template>
 
 <script>
 import NavigationBar from "@/components/NavigationBar.vue";
+import SlideMenu from '@/components/SlideMenu.vue'
 
 export default {
   name: 'App',
   components: {
-    NavigationBar
+    NavigationBar,
+    SlideMenu
   },
+  // data() {
+  //   showSlideMenu: false
+  // },
   computed: {
     pageTitle() {
       switch (this.$route.path) {
@@ -22,6 +28,18 @@ export default {
           return 'Sign Up';
         case '/home':
           return 'Home';
+        case '/release_assignment':
+          return 'Release Assignment';
+        case '/profile':
+          return 'Profile';
+        case '/all_courses':
+          return 'All Courses';
+        case '/course_overview':
+          return 'Course Overview';
+        case '/assignment_progress':
+          return 'Assignments Progress';
+        case '/menu':
+          return 'Slide Menu';
         default:
           return 'Not a course';
       }

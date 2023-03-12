@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <div id="login">
-      <h1>Login</h1>
+      <h1>Welcome!</h1>
       <form id="form-test">
         <input type="text" v-model="input_name" placeholder="username" name="name" id="name"/>
         <input spellcheck="false" type="password" v-model="input_password" placeholder="password" name="password" id="password"/>
@@ -10,7 +10,8 @@
           <div></div>
         </div>
         <div id="strength"></div>
-        <input type="submit" value="Enter" v-on:click="submitForm"/>
+        <input type="submit" value="Enter Profile" v-on:click="submitForm"/>
+        <input type="submit" id="guestButton" value="Enter as guest" v-on:click="enterAsGuest">
       </form>
       <p>{{ message }}</p>
     </div>
@@ -27,96 +28,53 @@
 </template>
 
 <script>
+import Router from "@/router";
+
 export default {
   data() {
     return {
-      message: 'Welcome to Vue!',
+      message: '',
       input_name: "",
       input_password: "",
     };
   },
-  computed: {
-    passwordStrength() {
-      // calculate the password strength and return a number between 0 and 100
-      const password = this.input_password;
-      let strength = 0;
-      if (password.length >= 8) {
-        strength += 30;
-      }
-      if (password.match(/[a-z]/)) {
-        strength += 10;
-      }
-      if (password.match(/[A-Z]/)) {
-        strength += 20;
-      }
-      if (password.match(/\d/)) {
-        strength += 20;
-      }
-      if (password.match(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/)) {
-        strength += 20;
-      }
-      return strength;
-    },
-    passwordStrengthText() {
-      const strength = this.passwordStrength;
-      const bars = document.querySelector("#bars");
-      const strengthDiv = document.querySelector("#strength");
-      const passwordInput = document.querySelector("#password");
-
-      if (strength >= 70) {
-        bars.className = "strong";
-        strengthDiv.innerHTML = "Strong";
-      } else if (strength >= 40) {
-        bars.className = "medium";
-        strengthDiv.innerHTML = "Medium";
-      } else {
-        bars.className = "weak";
-        strengthDiv.innerHTML = "Weak";
-      }
-
-      // append bars and strengthDiv to DOM
-      passwordInput.parentNode.insertBefore(bars, passwordInput.nextSibling);
-      passwordInput.parentNode.insertBefore(strengthDiv, passwordInput.nextSibling);
-
-      return "";
-    },
-    bars() {
-      // get the bars element
-      return document.querySelector("#bars");
-    },
-    strengthDiv() {
-      // get the strength element
-      return document.querySelector("#strength");
-    },
-  },
-  watch: {
-    passwordStrength() {
-      // update the styles of the bars and strength elements when the password strength changes
-      this.bars.classList.remove("weak", "medium", "strong");
-      this.bars.classList.add(this.passwordStrengthText.toLowerCase());
-      this.strengthDiv.textContent = this.passwordStrengthText;
-    },
-  },
   methods: {
+    enterAsGuest(e){
+      e.preventDefault();
+      Router.push('/home');
+    },
+    // if(this.input_name.toUpperCase() === "ADM" && this.input_password.toUpperCase() === "ADM"){
+  // Router.push('/home')
     submitForm(e){
       e.preventDefault();
-      if(this.input_name.toUpperCase() == "ADM" && this.input_password.toUpperCase() == "ADM"){
-        this.message = 'Login accepted!!';
-        this.input_name = "";
-        this.input_password = "";
-        // reset password strength bar and text
-        const bars = document.querySelector("#bars");
-        const strengthDiv = document.querySelector("#strength");
-        // const passwordInput = document.querySelector("#password");
-        bars.className = "";
-        bars.querySelector("div").style.width = "0%";
-        strengthDiv.innerText = "";
-
-      }else{
-        this.message = "wrong password try again";
-        this.input_name = "";
-        this.input_password = "";
+      const body = {
+        username: this.input_name,
+        password: this.input_password
       }
+      fetch('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+          .then(response => {
+            if (response.ok) {
+              this.showError = false;
+              this.message = 'Login accepted';
+              this.input_name = "";
+              this.input_password = "";
+              Router.push('/home');
+            } else {
+              this.showError = true;
+              this.message = "";
+              this.input_name = "";
+              this.input_password = "";
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
     },
     submitPost(e){
       e.preventDefault();
@@ -149,7 +107,7 @@ button {
   border: solid 1px;
   border-radius: 2em;
   font: inherit;
-  padding: 0.75em 2em;
+  //padding: 0.75em 2em;
 }
 #form-test{
   display: flex;
@@ -194,7 +152,7 @@ input[type='submit']{
 
   font-family: 'Open Sans',serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 15px;
   line-height: 30px;
   /* identical to box height, or 200% */
@@ -263,5 +221,42 @@ textarea{
 #bars.strong div {
   background: #1eb965;
   width: 100%;
+}
+
+#guestButton {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+
+  position: center;
+  width: fit-content;
+  height: 43px;
+  left: 503px;
+  margin-top: 1rem;
+  top: 640px;
+
+  background: rgb(111, 124, 126);
+  mix-blend-mode: normal;
+  border: 1px solid #695a66;
+  box-shadow: inset 0px 4px 4px rgba(19, 39, 103, 0.25);
+  border-radius: 15px;
+
+  font-family: 'Open Sans',serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 30px;
+  /* identical to box height, or 200% */
+
+  text-align: center;
+
+  color: #FFFFFF;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 </style>

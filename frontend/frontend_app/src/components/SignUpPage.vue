@@ -1,6 +1,29 @@
 <template>
-  <div id="test">
-
+  <div id="app">
+    <div id="Signup">
+      <h1>Enter Details</h1>
+      <form id="form-test">
+        <input type="text" v-model="input_name" placeholder="username" name="name" id="name"/>
+        <input type="text" v-model="input_email" placeholder="email" name="email" id="name"/>
+        <input spellcheck="false" type="password" v-model="input_password" placeholder="password" name="password" id="password"/>
+        <input spellcheck="false" type="password" v-model="input_password" placeholder="confirm password" name="password" id="password"/>
+        <div id="bars">
+          <div></div>
+        </div>
+        <div id="strength"></div>
+        <input type="submit" value="Enter" v-on:click="submitForm"/>
+      </form>
+      <p>{{ message }}</p>
+    </div>
+    <div id="post">
+      <h1>Post</h1>
+      <form id='form-post'>
+        <textarea v-model="input_author" placeholder="Digite seu nome" name="author" id="author"/>
+        <textarea v-model="input_text" placeholder="Digite seu comentário" name="comentario" id="comentario" rows="5"/>
+        <input type="submit" value="Enter" v-on:click="submitPost"/>
+        <input type="submit" value="Sair" v-on:click="submitSair"/>
+      </form>
+    </div>
   </div>
 </template>
 
