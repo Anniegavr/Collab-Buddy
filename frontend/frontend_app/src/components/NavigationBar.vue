@@ -1,30 +1,21 @@
 <template>
   <nav id="menu">
-    <SlideMenu id="ham-menu"/>
-    <p id="menu-title">{{ title }}</p>
+    <p id="menu-title">{{title}}</p>
 
   </nav>
 </template>
 
-<script>
-export default {
-  name: "NavigationBar",
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  },
-  methods: {
-    toggleMenu() {
-      // emit an event to toggle the visibility of the slide menu
-      this.$emit('showSlideMenu');
-    }
+<script setup lang="ts">
+import { defineProps } from 'vue'
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
   }
-}
+})
 </script>
 
-<style>
+<style scoped lang="scss">
 #ham-menu{
   position: absolute;
   max-width: 62px;

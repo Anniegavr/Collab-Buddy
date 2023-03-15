@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// import ScheduleRingChart from "@/components/ScheduleRingChart.vue";
 
 export default {
   name: "MainPage",
