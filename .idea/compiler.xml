@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="backend" />
+        <module name="eureka_server" />
+        <module name="api_gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="backend" target="1.5" />
       <module name="Collab_Buddy" target="1.5" />
     </bytecodeTargetLevel>
   </component>
