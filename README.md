@@ -45,18 +45,18 @@ Students might be dishonest in the personal information they share on this platf
   All-in-1 is a powerful feature, which MS Teams and Google offer. Moodle also tends towards achieving this. Google and Microsoft have complex tools which can be used, not mimicked. So they can be also partners in this application’s development. Direct collaboration between students and teachers, in a very organized way, is a plus - this is Moodle’s and Google Classroom’s advantage over MS Teams (that uses chats mainly) in achieving a useful collaborative space for teachers and students to use.
 
 ## Completed sessions
-- Orientation session
-
-## Sessions in progress
 - Documentation session
-
-## Up next
+- Orientation session
 - Design / UX / UI
 - Backend
 - Efficient Communication
 - Frontend
 - QA / Unit Testing
+
+## Sessions in progress
 - Soft Skills
+
+## Up next
 - Mobile
 - Project Management / Agile
 - DevOps
