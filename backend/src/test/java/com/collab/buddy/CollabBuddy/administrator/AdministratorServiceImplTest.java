@@ -40,10 +40,11 @@ class AdministratorServiceImplTest {
 
   @Test
   void testCreateAdministrator() {
+    // arrange and act
     when(administratorRepository.save(any(Administrator.class))).thenReturn(administrator);
 
     Administrator createdAdministrator = administratorService.createAdministrator(administrator);
-
+    // assert
     assertNotNull(createdAdministrator);
     assertEquals(administrator.getName(), createdAdministrator.getName());
     assertEquals(administrator.getAge(), createdAdministrator.getAge());
@@ -55,13 +56,15 @@ class AdministratorServiceImplTest {
 
   @Test
   void testUpdateAdministrator() {
+    // arrange
     int newAge = 35;
-
+    
+    // act
     when(administratorRepository.findById(administrator.getAdminId())).thenReturn(java.util.Optional.ofNullable(administrator));
     when(administratorRepository.updateAgeBy(anyInt())).thenReturn(administrator);
 
     Administrator updatedAdministrator = administratorService.updateAdministrator(administrator.getAdminId(), newAge);
-
+    // assert
     assertNotNull(updatedAdministrator);
     assertEquals(administrator.getName(), updatedAdministrator.getName());
     assertEquals(newAge, updatedAdministrator.getAge());
