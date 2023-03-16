@@ -32,8 +32,8 @@ public class Teacher {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "specialty", nullable = false)
-    private String specialty;
+    @Column(name = "courses", nullable = false)
+    private String courses;
 
     @Column(name = "role", nullable = false)
     private static ERole role = ERole.TEACHER;
