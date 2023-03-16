@@ -25,7 +25,7 @@ spring:
               basedOnPreviousValue: false
       routes:
         - id: service
-          uri: lb://SERVICE
+          uri: lb://BASE-SERVICE
           predicates:
             - Path=/api/v1/**
           filters:
@@ -33,15 +33,15 @@ spring:
               args:
                 name: baseServiceCircuitBreaker
                 fallbackURI: forward:/base-service-fallback
-        - id: giveaway-service
-          uri: lb://GIVEAWAY-SERVICE
+        - id: schedule-service
+          uri: lb://SCHEDULE-SERVICE
           predicates:
-            - Path=/api/v1/giveaway/**
+            - Path=/api/v1/schedule/**
           filters:
             - name: CircuitBreaker
               args:
-                name: giveawayServiceCircuitBreaker
-                fallbackURI: forward:/giveaway-service-fallback
+                name: scheduleServiceCircuitBreaker
+                fallbackURI: forward:/schedule-service-fallback
 #  lifecycle:
 #    timeout-per-shutdown-phase: 20s
 #    redis:

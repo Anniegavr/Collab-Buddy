@@ -20,37 +20,7 @@ public class FallbackConfiguration {
         return RouterFunctions
                 .route(RequestPredicates.GET("/base-service-fallback"),
                         this::handleGetFallback)
-                .andRoute(RequestPredicates.GET("/giveaway-service-fallback"),
-                        this::handleGetFallback)
-                .andRoute(RequestPredicates.POST("/base-service-fallback"),
-                        this::handlePostFallback)
-                .andRoute(RequestPredicates.POST("/giveaway-service-fallback"),
-                        this::handlePostFallback)
-//                .andRoute(RequestPredicates.GET("/giveawayFallback"),
-//                        this::handlePostFallback)
-//                .andRoute(RequestPredicates.GET("/productServiceFallback"),
-//                        this::handleGetFallback)
-//                .andRoute(RequestPredicates.GET("/qtyServiceFallback"),
-//                        this::handleGetFallback)
-//                .andRoute(RequestPredicates.GET("/packServiceFallback"),
-//                        this::handleGetFallback)
-//                .andRoute(RequestPredicates.GET("/previewFallback"),
-//                        this::handlePostFallback)
-//                .andRoute(RequestPredicates.GET("/ownershipFallback"),
-//                        this::handlePostFallback)
-//                .andRoute(RequestPredicates.POST("/userServiceFallback"),
-//                        this::handlePostFallback)
-//                .andRoute(RequestPredicates.POST("/giveawayFallback"),
-//                        this::handlePostFallback)
-//                .andRoute(RequestPredicates.POST("/productServiceFallback"),
-//                        this::handleGetFallback)
-//                .andRoute(RequestPredicates.POST("/qtyServiceFallback"),
-//                        this::handleGetFallback)
-//                .andRoute(RequestPredicates.POST("/packServiceFallback"),
-//                        this::handleGetFallback)
-//                .andRoute(RequestPredicates.POST("/previewFallback"),
-//                        this::handlePostFallback)
-//                .andRoute(RequestPredicates.POST("/ownershipFallback"),
+//                .andRoute(RequestPredicates.POST("/schedule-service-fallback"),
 //                        this::handlePostFallback)
                         ;
     }
