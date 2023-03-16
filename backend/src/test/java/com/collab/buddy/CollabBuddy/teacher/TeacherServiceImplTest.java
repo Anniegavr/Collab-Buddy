@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -21,18 +24,24 @@ public class TeacherServiceImplTest {
   @InjectMocks
   private TeacherServiceImpl teacherService;
 
+  @BeforeEach
+  public void setup() {
+    MockitoAnnotations.openMocks(this);
+  }
+
   @Test
+  @DisplayName("Test shouldReturnAllTeachers()")
   public void shouldReturnAllTeachers() {
-    // Given
+    // Arrange
     List<Teacher> teachers = new ArrayList<>();
     teachers.add(new Teacher(1L, "John Doe", 35, "johndoe@example.com", "Mathematics"));
     teachers.add(new Teacher(2L, "Jane Smith", 40, "janesmith@example.com", "Science"));
     when(teacherRepository.findAll()).thenReturn(teachers);
 
-    // When
+    // Act
     List<Teacher> result = teacherService.getAllTeachers();
 
-    // Then
+    // Assert
     assertEquals(2, result.size());
     assertEquals("John Doe", result.get(0).getName());
     assertEquals("Mathematics", result.get(0).getSpecialty());
@@ -41,15 +50,16 @@ public class TeacherServiceImplTest {
   }
 
   @Test
+  @DisplayName("Test shouldReturnTeacherById()")
   public void shouldReturnTeacherById() {
-    // Given
+    // Arrange
     Teacher teacher = new Teacher(1L, "John Doe", 35, "johndoe@example.com", "Mathematics");
     when(teacherRepository.findById(1L)).thenReturn(Optional.of(teacher));
 
-    // When
+    // Act
     Teacher result = teacherService.getTeacherByTeacherId(1L);
 
-    // Then
+    // Assert
     assertEquals("John Doe", result.getName());
     assertEquals("johndoe@example.com", result.getEmail());
     assertEquals(35, result.getAge());

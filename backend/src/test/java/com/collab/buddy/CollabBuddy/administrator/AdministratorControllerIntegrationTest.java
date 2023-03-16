@@ -66,7 +66,7 @@ public class AdministratorControllerIntegrationTest {
     administrator.setName("Test Admin");
     administrator.setAge(30);
     administrator.setEmail("testadmin@example.com");
-    administrator.setSpecialty("Test Specialty");
+    administrator.setSpecialty("Test Course");
 
     String json = objectMapper.writeValueAsString(administrator);
 
@@ -83,6 +83,6 @@ public class AdministratorControllerIntegrationTest {
     assertThat(createdAdministrator.getName()).isEqualTo(administrator.getName());
     assertThat(createdAdministrator.getAge()).isEqualTo(administrator.getAge());
     assertThat(createdAdministrator.getEmail()).isEqualTo(administrator.getEmail());
-    assertThat(createdAdministrator.getSpecialty()).isEqualTo(administrator.getSpecialty());
+    assertThat(createdAdministrator.getCourse()).isEqualTo(administrator.getCourse());
   }
 }

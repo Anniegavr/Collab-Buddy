@@ -35,7 +35,7 @@ class AdministratorServiceImplTest {
     administrator.setName("John Doe");
     administrator.setAge(30);
     administrator.setEmail("john.doe@example.com");
-    administrator.setSpecialty("IT");
+    administrator.setCourse("IT");
   }
 
   @Test
@@ -48,7 +48,7 @@ class AdministratorServiceImplTest {
     assertEquals(administrator.getName(), createdAdministrator.getName());
     assertEquals(administrator.getAge(), createdAdministrator.getAge());
     assertEquals(administrator.getEmail(), createdAdministrator.getEmail());
-    assertEquals(administrator.getSpecialty(), createdAdministrator.getSpecialty());
+    assertEquals(administrator.getCourse(), createdAdministrator.getCourse());
 
     verify(administratorRepository, times(1)).save(any(Administrator.class));
   }
@@ -66,7 +66,7 @@ class AdministratorServiceImplTest {
     assertEquals(administrator.getName(), updatedAdministrator.getName());
     assertEquals(newAge, updatedAdministrator.getAge());
     assertEquals(administrator.getEmail(), updatedAdministrator.getEmail());
-    assertEquals(administrator.getSpecialty(), updatedAdministrator.getSpecialty());
+    assertEquals(administrator.getCourse(), updatedAdministrator.getCourse());
 
     verify(administratorRepository, times(1)).findById(administrator.getAdminId());
     verify(administratorRepository, times(1)).updateAgeBy(anyInt());
