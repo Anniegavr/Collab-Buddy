@@ -6,13 +6,13 @@
     <div class="menu" :class="{ active: menuActive }">
       <ul>
         <li><router-link to="/students">Students</router-link></li>
-        <li><router-link to="/assignment-types">Assignments</router-link></li>
-        <li><router-link to="/add_student">Add student</router-link></li>
+        <li><router-link to="/admin/assignment-types">Assignments</router-link></li>
+        <li><router-link to="/admin/add_student">Add student</router-link></li>
         <li><router-link to="/teachers">Add teacher</router-link></li>
-        <li><router-link to="/skill_types">Add skill</router-link></li>
-        <li><router-link to="/assignment-types">Add assignment type</router-link></li>
-        <li><router-link to="/add_groups">Add group</router-link></li>
-        <li><router-link to="/all_courses">View All Configurations</router-link></li>
+        <li><router-link to="/admin/skill_types">Add skill</router-link></li>
+        <li><router-link to="/admin/assignment-types">Add assignment type</router-link></li>
+        <li><router-link to="/admin/add_groups">Add group</router-link></li>
+        <li><router-link to="/admin/all_courses">View All Configurations</router-link></li>
         <li><router-link to="/admin">Admin Panel</router-link></li>
       </ul>
     </div>

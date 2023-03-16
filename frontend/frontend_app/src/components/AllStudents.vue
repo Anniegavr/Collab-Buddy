@@ -6,18 +6,20 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Teacher</th>
+          <th>Email</th>
+          <th>Year</th>
           <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="course in courses" :key="course.id">
-          <td>{{ course.id }}</td>
-          <td>{{ course.name }}</td>
-          <td>{{ course.teacher }}</td>
+        <tr v-for="student in students" :key="student.id">
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{student.year}}</td>
           <td>
-            <button class="edit-btn" @click="editCourse(course)">Edit</button>
-            <button class="delete-btn" @click="deleteCourse(course)">Delete</button>
+            <button class="edit-btn" @click="editStudent(student)">Edit</button>
+            <button class="delete-btn" @click="deleteStudent(student)">Delete</button>
           </td>
         </tr>
         </tbody>
@@ -28,25 +30,26 @@
 
 <script>
 export default {
-  name: "AllCourses"
+  name: "AllStudents",
   data() {
     return {
-      courses: [
-        {id: 1, name: 'Maths', teacher: 'Dan Defoe'},
-        {id: 2, name: 'Survival', email: 'Robin Crusoe'},
-        {id: 3, name: 'Nutrition', email: 'Robin Crusoe'}
+      students: [
+        {id: 1, name: 'John Doe', email: 'john.doe@example.com', year: 2},
+        {id: 2, name: 'Jane Doe', email: 'jane.doe@example.com', year: 4},
+        {id: 3, name: 'Bob Smith', email: 'bob.smith@example.com', year: 2}
       ]
     }
   },
   methods: {
-    editCourse(course) {
+    editStudent(student) {
       // Handle edit user action
     },
-    deleteCourse(course) {
+    deleteStudent(student) {
       // Handle delete user action
     }
   }
 }
+
 </script>
 
 <style scoped>

@@ -13,16 +13,16 @@
       <router-link to="/skill-types" class="admin-panel-item">
         <h2>All Skill Types</h2>
       </router-link>
-      <router-link to="/assignment-types" class="admin-panel-item">
+      <router-link to="/admin/assignment-types" class="admin-panel-item">
         <h2>All Assignment Types</h2>
       </router-link>
       <router-link to="/groups" class="admin-panel-item">
         <h2>All Groups</h2>
       </router-link>
-      <router-link to="/negotiations" class="admin-panel-item">
+      <router-link to="/admin/negotiations" class="admin-panel-item">
         <h2>Assignment Negotiations</h2>
       </router-link>
-      <router-link to="/schedule-config" class="admin-panel-item">
+      <router-link to="/admin/schedule-config" class="admin-panel-item">
         <h2>Student Schedule Config</h2>
       </router-link>
 

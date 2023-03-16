@@ -1,7 +1,6 @@
 <template>
   <div>
     <NavigationBar :title="pageTitle"/>
-<!--    <SlideMenu v-if="showSlideMenu" />-->
     <FloatingMenuButton/>
     <router-view />
   </div>
@@ -34,33 +33,33 @@ export default {
           return "All Teachers";
         case '/admin':
           return 'Administration Panel';
-        case '/release_assignment':
+        case '/teacher/release_assignment':
           return 'Release Assignment';
         case '/profile':
           return 'Profile';
-        case '/skill_types':
+        case '/admin/skill_types':
           return 'Skill Types';
-        case '/assignment-types':
+        case '/admin/assignment-types':
           return "Assignment Types";
-        case '/all_courses':
+        case '/admin/all_courses':
           return 'All Courses';
         case '/course_overview':
           return 'Course Overview';
-        case '/assignment_progress':
+        case '/admin/assignment_progress':
           return 'Assignments Progress';
-        case '/add_groups':
+        case '/admin/add_groups':
           return 'Add Group';
-        case '/add_student':
+        case '/admin/add_student':
           return 'Add Student';
         case '/menu':
           return 'Slide Menu';
-        case '/students':
+        case '/admin/all_students':
           return 'All Students';
         case '/groups':
           return 'All Groups';
-        case '/negotiations':
+        case '/admin/negotiations':
           return 'Pending Negotiations';
-        case '/schedule_config':
+        case '/admin/schedule_config':
           return 'Schedule Configuration';
         default:
           return 'Not a course';

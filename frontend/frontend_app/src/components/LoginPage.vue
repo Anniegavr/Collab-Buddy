@@ -90,7 +90,7 @@ button {
   flex-direction: column;
   align-items: flex-start;
   padding: 10px 15px;
-  width: 70%;
+  width: 100%;
   margin-top: 10px;
   position: center;
   background: #ffffff;
@@ -107,7 +107,7 @@ input[type='submit']{
   padding: 10px 15px;
 
   position: center;
-  width: 50%;
+  width: 70%;
   height: fit-content;
   left: 10%;
   top: 30%;

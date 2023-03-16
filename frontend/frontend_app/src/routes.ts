@@ -1,5 +1,6 @@
 import type {RouteRecordRaw} from 'vue-router'
 
+// @ts-ignore
 const routes: RouteRecordRaw[] =  [
     {
         path: '/',
@@ -30,11 +31,15 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/SignUpPage.vue'),
     },
     {
-        path: '/all_courses',
+        path: '/admin/all_courses',
         component: () => import('./components/AllCourses.vue'),
     },
     {
-        path: '/release_assignment',
+        path: '/admin/all_students',
+        component: () => import('./components/AllStudents.vue.vue'),
+    },
+    {
+        path: '/teacher/release_assignment',
         component: () => import('./components/ReleaseAssignment.vue'),
     },
     {
@@ -46,7 +51,7 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/ProfilePage.vue'),
     },
     {
-        path: '/assignment_types',
+        path: '/admin/assignment_types',
         component: () => import('./models/Assignment.vue')
     },
     {
@@ -54,19 +59,19 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/SideBarMenu.vue'),
     },
     {
-        path: '/add_groups',
+        path: '/admin/add_groups',
         component: () => import('./components/AddGroup.vue')
     },
     {
-        path: '/add_student',
+        path: '/admin/add_student',
         component: () => import('./components/AddStudentsPage.vue')
     },
     {
-        path: '/skill_types',
+        path: '/admin/skill_types',
         component: () => import('./components/SkillTypesConfigPage.vue'),
     },
     {
-        path: '/assignment_progress',
+        path: '/admin/assignment_progress',
         component: () => import('./components/AssignmentsProgress.vue'),
     },
     {
@@ -74,12 +79,16 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/TeachersPage.vue')
     },
     {
-        path: '/negotiations',
+        path: '/admin/negotiations',
         component: () => import('./components/NegotiationsPage.vue')
     },
     {
-        path: '/schedule_config',
+        path: '/admin/schedule_config',
         component: () => import('./components/StudentScheduleConfigPage.vue')
+    },
+    {
+        path: '/admin/ll_students',
+        component: () => import('./components/AllStudents.vue')
     },
 ]
 export default routes
