@@ -11,8 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
-@Getter
-@Setter
 public class AdministratorController {
     private final AdministratorServiceImpl administratorService;
 

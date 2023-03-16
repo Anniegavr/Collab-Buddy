@@ -27,7 +27,7 @@ public class SwaggerConfig {
     @Bean
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Collab Buddy API")
+                .title("Collab_Buddy_API")
                 .description("For assignment planning and management")
                 .version("1.0")
                 .build();

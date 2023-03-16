@@ -10,8 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/assignments")
 @RequiredArgsConstructor
-@Getter
-@Setter
 public class AssignmentController {
     private final AssignmentService assignmentService;
 

@@ -12,8 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/teachers")
 @RequiredArgsConstructor
-@Getter
-@Setter
 public class TeacherController {
     private final TeacherService teacherService;
 
