@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class,
 		ManagementWebSecurityAutoConfiguration.class })
 @EnableAdminServer
+@EnableEurekaClient
+@EnableAsync
+@EnableScheduling
 public class CollabBuddyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CollabBuddyApplication.class, args);
