@@ -3,6 +3,7 @@
     <NavigationBar :title="pageTitle"/>
     <FloatingMenuButton/>
     <router-view />
+<!--    <Total-->
   </div>
 </template>
 
@@ -13,7 +14,8 @@ export default {
   name: 'App',
   components: {
     NavigationBar,
-    FloatingMenuButton
+    FloatingMenuButton,
+
   },
   data() {
   //   showSlideMenu: false
@@ -23,6 +25,8 @@ export default {
       switch (this.$route.path) {
         case '/login':
           return 'Login';
+        case 'admin_proxy':
+          return 'Admin Authentication';
         case '/signup':
           return 'Sign Up';
         case '/home':

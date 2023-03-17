@@ -56,6 +56,9 @@ management:
   endpoint:
     health:
       show-details: always
+app:
+  admin:
+    ips: 127.0.0.1, 192.168.100
 anniegavr:
   app:
     jwtSecret = someSecretKey

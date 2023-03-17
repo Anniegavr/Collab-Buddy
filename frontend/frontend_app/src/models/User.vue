@@ -1,15 +1,38 @@
-<template>
+<!--<template>-->
 
-</template>
+<!--</template>-->
 
-<script>
-export default {
-  name: "User",
+<!--<script>-->
+<!--export default {-->
+<!--  name: "User",-->
+<!--}-->
+<!--export interface User {-->
+<!--  id: number;-->
+<!--  name: string;-->
+<!--  email: string;-->
+<!--  role: string;-->
+<!--}-->
 
+<!--export class UserClass implements User {-->
+<!--  id: number;-->
+<!--  name: string;-->
+<!--  email: string;-->
+<!--  role: string;-->
 
-}
-</script>
+<!--  constructor(id: number, name: string, email: string, role: string) {-->
+<!--    this.id = id;-->
+<!--    this.name = name;-->
+<!--    this.email = email;-->
+<!--    this.role = role;-->
+<!--  }-->
 
-<style scoped>
+<!--  isAdmin(): boolean {-->
+<!--    return this.role === 'admin';-->
+<!--  }-->
+<!--}-->
 
-</style>
+<!--</script>-->
+
+<!--<style scoped>-->
+
+<!--</style>-->

@@ -1,4 +1,4 @@
-package org.pad;
+package com.collab.buddy;
 
 import java.time.Duration;
 

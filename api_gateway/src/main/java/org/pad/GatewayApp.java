@@ -1,4 +1,4 @@
-package org.pad;
+package com.collab.buddy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

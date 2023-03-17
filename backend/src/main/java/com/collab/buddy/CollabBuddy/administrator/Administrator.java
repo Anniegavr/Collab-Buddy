@@ -13,11 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Administrator extends  AbstractUser {
-    @Column(name = "specialty", nullable = false)
-    private String specialty;
+public class Administrator extends AbstractUser {
+  @Column(name = "specialty", nullable = false)
+  private String specialty;
 
-    @Column(name = "role", nullable = false)
-    private static ERole role = ERole.ADMIN;
+  @Column(name = "role", nullable = false)
+  private static ERole role = ERole.ADMIN;
 
 }

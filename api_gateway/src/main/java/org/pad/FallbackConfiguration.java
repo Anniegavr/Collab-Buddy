@@ -1,4 +1,4 @@
-package org.pad;
+package com.collab.buddy;
 
 import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;

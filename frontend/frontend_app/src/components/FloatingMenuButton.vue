@@ -6,21 +6,23 @@
     <div class="menu" :class="{ active: menuActive }">
       <ul>
         <li><router-link to="/students">Students</router-link></li>
-        <li><router-link to="/admin/assignment-types">Assignments</router-link></li>
-        <li><router-link to="/admin/add_student">Add student</router-link></li>
-        <li><router-link to="/teachers">Add teacher</router-link></li>
-        <li><router-link to="/admin/skill_types">Add skill</router-link></li>
-        <li><router-link to="/admin/assignment-types">Add assignment type</router-link></li>
-        <li><router-link to="/admin/add_groups">Add group</router-link></li>
-        <li><router-link to="/admin/all_courses">View All Configurations</router-link></li>
-        <li><router-link to="/admin">Admin Panel</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/assignment-types">Assignments</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/add_student">Add student</router-link></li>
+        <li><router-link @click="fetchData" to="/teachers">Add teacher</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/skill_types">Add skill</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/assignment-types">Add assignment type</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/add_groups">Add group</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/all_courses">View All Configurations</router-link></li>
+        <li><router-link @click="fetchData" to="/admin">Admin Panel</router-link></li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+import { defineComponent} from "vue";
+import Api from "../Api.ts";
+export default {
     data() {
       return {
         menuActive: false
@@ -29,7 +31,15 @@
     methods: {
       toggleMenu() {
         this.menuActive = !this.menuActive;
-      }
+      },
+      async fetchData() {
+        try {
+          const response = await Api.get('/admin');
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      },
     }
   };
 </script>

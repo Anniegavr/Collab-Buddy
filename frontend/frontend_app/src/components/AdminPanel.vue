@@ -1,6 +1,9 @@
 <template>
   <div class="admin-panel">
     <div class="admin-panel-grid">
+      <router-link to="/admin" class="admin-panel-item">
+        <TotalRequests />
+      </router-link>
       <router-link to="/users" class="admin-panel-item">
         <h2>All Users</h2>
       </router-link>
@@ -10,7 +13,7 @@
       <router-link to="/teachers" class="admin-panel-item">
         <h2>All Teachers</h2>
       </router-link>
-      <router-link to="/skill-types" class="admin-panel-item">
+      <router-link to="/admin/skill-types" class="admin-panel-item">
         <h2>All Skill Types</h2>
       </router-link>
       <router-link to="/admin/assignment-types" class="admin-panel-item">
@@ -31,8 +34,13 @@
 </template>
 
 <script>
+import TotalRequests from "./TotalRequests.vue";
 export default {
+
   name: 'AdminPanel',
+  components: {
+    TotalRequests,
+  }
 };
 </script>
 
