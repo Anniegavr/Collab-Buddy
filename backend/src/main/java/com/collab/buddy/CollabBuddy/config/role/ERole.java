@@ -5,5 +5,6 @@ public enum ERole {
     TEACHER,
     GUEST,
     ADMIN,
+    STUDENT,
     DEV
 }

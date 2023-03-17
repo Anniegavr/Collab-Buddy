@@ -13,27 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Administrator {
-    @Id
-    @SequenceGenerator(
-            name="admin_id_sequence",
-            sequenceName = "admin_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "admin_id_sequence"
-    )
-    private Long adminId;
-
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "age", nullable = false)
-    private Integer age;
-
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
-
+public class Administrator extends  AbstractUser {
     @Column(name = "specialty", nullable = false)
     private String specialty;
 

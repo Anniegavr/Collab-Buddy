@@ -11,27 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Teacher {
-    @Id
-    @SequenceGenerator(
-            name="teacher_id_sequence",
-            sequenceName = "teacher_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "teacher_id_sequence"
-    )
-    private Long teacherId;
-
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "age", nullable = false)
-    private Integer age;
-
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
-
+public class Teacher extends AbstractUser {
     @ElementCollection
     private List<String> courses;
 

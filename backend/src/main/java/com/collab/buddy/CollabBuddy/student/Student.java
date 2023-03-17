@@ -12,26 +12,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Student {
-    @Id
-    @SequenceGenerator(
-            name="student_id_sequence",
-            sequenceName = "student_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_id_sequence"
-    )
-    private Long studentId;
-
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "age", nullable = false)
-    private Integer age;
-
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
-
+public class Student extends  AbstractUser{
+    @Column(name = "year", nullable = false)
+    private Integer year;
+    @Column(name="specialty", nullable = false)
+    private String specialty;
+    @Column(name = "role", nullable = false)
+    private static ERole role = ERole.STUDENT;
 }
 

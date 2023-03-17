@@ -16,6 +16,10 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 public class CollabBuddyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CollabBuddyApplication.class, args);
+
+		@Bean public BCryptPasswordEncoder bCryptPasswordEncoder() {
+			return new BCryptPasswordEncoder();
+		}
 	}
 
 }
