@@ -17,11 +17,57 @@
 </template>
 
 <script>
+import Router from "../router.js";
+
 export default {
   name: "SignUpPage",
   created() {
     const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.setAttribute('data-theme', darkTheme ? 'dark' : 'light');
+  }
+  methods: {
+    submitForm(e){
+      e.preventDefault()
+      this.v$.$validate()
+      if (!this.v$.$error) {
+        alert('Success!')
+        const body = {
+          username: this.name,
+          email: this.email,
+          password: this.password
+        }
+        fetch('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+            .then(response => {
+              if (response.ok) {
+                this.showError = false;
+                this.message = 'Login accepted';
+                this.name = "";
+                this.email = "";
+                this.password = "";
+                this.password.confirm= "";
+                Router.push('/home');
+              } else {
+                this.message = "";
+                this.message = 'Login not accepted';
+                this.name = "";
+                this.email = "";
+                this.password = "";
+                this.password.confirm= "";
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+      } else {
+        alert('Sorry, we couldn\'t process your data. Make sure it is correct.')
+      }
+    }
   }
 }
 </script>

@@ -85,7 +85,7 @@ export default {
           email: this.email,
           password: this.password
         }
-        fetch('/api/auth/login', {
+        fetch('/api/auth/signup', {
           method: 'POST',
           body: JSON.stringify(body),
           headers: {
@@ -95,7 +95,7 @@ export default {
             .then(response => {
               if (response.ok) {
                 this.showError = false;
-                this.message = 'Login accepted';
+                this.message = 'Signup accepted';
                 this.name = "";
                 this.email = "";
                 this.password = "";
@@ -103,7 +103,7 @@ export default {
                 Router.push('/home');
               } else {
                 this.message = "";
-                this.message = 'Login accepted';
+                this.message = 'Signup not accepted';
                 this.name = "";
                 this.email = "";
                 this.password = "";
@@ -118,10 +118,6 @@ export default {
       }
 
     },
-    created() {
-      const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', darkTheme ? 'dark' : 'light');
-    }
   },
   validations() {
     return {
