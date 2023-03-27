@@ -9,12 +9,9 @@ public interface AssignmentService {
 
     AssignmentDTO findAssignmentById(Long id);
     AssignmentDTO createAssignment(AssignmentDTO assignment);
-    void deleteAssignmentDTO(Long id);
     AssignmentDTO updateAssignment(Long id, AssignmentDTO assignment);
 
     AssignmentDTO findAssignmentById(Long id, TeacherDTO teacher);
-
-    AssignmentDTO updateAssignment(Long id, AssignmentDTO assignment, TeacherDTO teacher);
 
     void updateAssignment(Long id, Assignment assignment, TeacherDTO teacher);
 

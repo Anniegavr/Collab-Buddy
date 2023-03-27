@@ -67,8 +67,9 @@ public class AssignmentServiceImpl implements AssignmentService {
     }
 
     @Override
-    public AssignmentDTO updateAssignment(Long id, AssignmentDTO assignment, TeacherDTO teacher) {
-        return null;
+    public AssignmentDTO updateAssignment(Long id, AssignmentDTO assignment) {
+        //TODO implement
+        return new AssignmentDTO();
     }
 
     @Override
@@ -85,6 +86,7 @@ public class AssignmentServiceImpl implements AssignmentService {
         assignment1.setDueDate(assignment.getDueDate());
 
         assignmentRepository.save(assignment1);
+        return assignment;
     }
 
     @Override
