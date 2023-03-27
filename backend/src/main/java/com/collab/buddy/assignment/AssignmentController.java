@@ -12,22 +12,22 @@ public class AssignmentController {
     private final AssignmentService assignmentService;
 
     @GetMapping
-    public List<Assignment> findAllAssignments() {
+    public List<AssignmentDTO> findAllAssignments() {
         return assignmentService.findAllAssignments();
     }
 
     @GetMapping("/{id}")
-    public Assignment findAssignmentById(@PathVariable Long id) {
+    public AssignmentDTO findAssignmentById(@PathVariable Long id) {
         return assignmentService.findAssignmentById(id);
     }
 
     @PostMapping
-    public Assignment createAssignment(@RequestBody Assignment assignment) {
-        return assignmentService.createAssignment(assignment);
+    public void createAssignment(@RequestBody AssignmentDTO assignment) {
+        assignmentService.createAssignment(assignment);
     }
 
     @PutMapping("/{id}")
-    public Assignment updateAssignment(@PathVariable Long id, @RequestBody Assignment assignment) {
+    public AssignmentDTO updateAssignment(@PathVariable Long id, @RequestBody AssignmentDTO assignment) {
         return assignmentService.updateAssignment(id, assignment);
     }
 
