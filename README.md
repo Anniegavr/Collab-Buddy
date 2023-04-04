@@ -1,6 +1,9 @@
 # Collab-Buddy
 Online platform to enhance the collaboration between students and teachers, as well as between teachers.
 
+## Extra Features - check the mobile app
+https://github.com/Anniegavr/Collab_Buddy_Mobile_App
+
 ## Why - the project I chose
   The project I chose is Collab Buddy. It received the best feedback from my peers and from most of the people outside ISD that I talked to. Aside from this, I’m most interested in developing this project and I can envision it the best, as I, myself, would have been part of the target group if it existed before. The problem that the project tries to solve concerns a bigger group than the other projects, also presenting clearer revenue streams than the other two, who mostly solve local problems of the companies. In addition, I plan on working on a similar project for my Bachelor’s Degree thesis, so the idea I chose shall be easily understood and envisioned by the graders. Lastly, the other two projects were said to have a smaller scope than the minimum one required to pass a JTOM program, as per my peers’ opinions.
 
