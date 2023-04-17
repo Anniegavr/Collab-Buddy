@@ -18,22 +18,24 @@ public class AdministratorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Administrator> getAdministratorByAdministratorId(@PathVariable Long id) {
-        Administrator administrator = administratorService.getAdministratorByAdministratorId(id);
+    public ResponseEntity<AdministratorDTO> getAdministratorByAdministratorId(@PathVariable Long id) {
+        AdministratorDTO administrator = administratorService.getAdministratorByAdministratorId(id);
+
         if (administrator == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
+
         return ResponseEntity.ok(administrator);
     }
 
     @PostMapping
-    public Administrator createAdministrator(@RequestBody Administrator administrator) {
+    public AdministratorDTO createAdministrator(@RequestBody Administrator administrator) {
         return administratorService.createAdministrator(administrator);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Administrator> updateAdministrator(@PathVariable Long id, @RequestBody int administratorAge) {
-        Administrator updatedAdministrator = administratorService.updateAdministrator(id, administratorAge);
+    public ResponseEntity<AdministratorDTO> updateAdministrator(Administrator administrator) {
+        AdministratorDTO updatedAdministrator = administratorService.updateAdministrator(administrator);
         if (updatedAdministrator == null) {
             return ResponseEntity.notFound().build();
         }
@@ -41,11 +43,8 @@ public class AdministratorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdministrator(@PathVariable Long id) {
-        if (administratorService.getAdministratorByAdministratorId(id) == null ) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().build();
+    public ResponseEntity.BodyBuilder deleteAdministrator(@PathVariable Long id) {
+        return administratorService.deleteAdministrator(id);
     }
 }
 

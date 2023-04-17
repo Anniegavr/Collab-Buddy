@@ -1,14 +1,15 @@
 package com.collab.buddy.administrator;
 
 import com.collab.buddy.config.role.ERole;
-import jakarta.persistence.*;
+import com.collab.buddy.general.user.AbstractUser;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

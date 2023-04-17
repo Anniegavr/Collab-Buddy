@@ -1,4 +1,4 @@
-package com.collab.buddy.CollabBuddy;
+package com.collab.buddy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

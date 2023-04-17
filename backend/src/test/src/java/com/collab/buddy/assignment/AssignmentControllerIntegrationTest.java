@@ -1,4 +1,4 @@
-package com.collab.buddy.CollabBuddy.assignment;
+package com.collab.buddy.assignment;
 
 import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
 

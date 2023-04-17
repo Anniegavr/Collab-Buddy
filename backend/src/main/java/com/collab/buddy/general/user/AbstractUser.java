@@ -24,7 +24,7 @@ public abstract class AbstractUser implements Serializable {
           strategy = GenerationType.SEQUENCE,
           generator = "student_id_sequence"
   )
-  private Long studentId;
+  private Long id;
   @Column(name="password", nullable = false)
   private String password;
 
