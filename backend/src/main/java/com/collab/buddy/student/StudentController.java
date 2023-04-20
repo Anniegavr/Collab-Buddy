@@ -1,6 +1,7 @@
 package com.collab.buddy.student;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,27 +15,30 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    public ResponseEntity<List<StudentDTO>> getAllStudents() {
+        return ResponseEntity.ok(studentService.getAllStudents());
     }
 
     @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable Long id) {
-        return studentService.getStudentById(id);
+    public ResponseEntity<StudentDTO> getStudentById(@PathVariable Long id) {
+        StudentDTO studentDTO = studentService.getStudentById(id);
+        return ResponseEntity.ok(studentDTO);
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.createStudent(student);
+    public ResponseEntity<StudentDTO> createStudent(@RequestBody Student student) {
+        StudentDTO studentDTO = studentService.createStudent(student);
+        return ResponseEntity.ok(studentDTO);
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable Long id, @RequestBody Student student) throws Exception {
-        return studentService.updateStudent(id, student);
+    public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id, @RequestBody StudentDTO student) throws Exception {
+        StudentDTO studentDTO = studentService.updateStudent(id, student);
+        return ResponseEntity.ok(studentDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
+    public ResponseEntity.BodyBuilder deleteStudent(@PathVariable Long id) {
+        return studentService.deleteStudent(id);
     }
 }

@@ -1,4 +1,4 @@
-package com.collab.buddy.CollabBuddy.student;
+package com.collab.buddy.student;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,21 +31,35 @@ public class StudentServiceImplTest {
   public void testGetAllStudents() {
     // Arrange
     List<Student> students = new ArrayList<>();
-    Student student1 = new Student(1L, "John", 20, "john@gmail.com");
-    Student student2 = new Student(2L, "Jane", 22, "jane@gmail.com");
+    Student student1 = new Student();
+    student1.setFirstName("John");
+    student1.setLastName("Doe");
+    student1.setYear(2);
+    student1.setSpecialty("IT");
+    student1.setAge(20);
+    student1.setEmail("john@gmail.com");
+
+    Student student2 = new Student();
+    student1.setFirstName("Jane");
+    student1.setLastName("Doe");
+    student1.setYear(4);
+    student1.setSpecialty("IT");
+    student1.setAge(22);
+    student1.setEmail("jane@gmail.com");
+
     students.add(student1);
     students.add(student2);
 
     when(studentRepository.findAll()).thenReturn(students);
 
     // Act
-    List<Student> result = studentService.getAllStudents();
+    List<StudentDTO> result = studentService.getAllStudents();
 
     // Assert
     Assertions.assertNotNull(result);
-    Assertions.assertEquals(students.size(), result.size());
-    Assertions.assertEquals(students.get(0), result.get(0));
-    Assertions.assertEquals(students.get(1), result.get(1));
+    assertEquals(students.size(), result.size());
+    assertEquals(students.get(0).getEmail(), result.get(0).email);
+    assertEquals(students.get(1).getEmail(), result.get(1).email);
     verify(studentRepository, times(1)).findAll();
   }
 
@@ -51,17 +67,23 @@ public class StudentServiceImplTest {
   @DisplayName("Given a student ID, when getStudentById is called, then the corresponding student is returned")
   public void testGetStudentById() {
     // Arrange
-    Student student = new Student(1L, "John", 20, "john@gmail.com");
-    Long studentId = student.getStudentId();
+    Student student = new Student();
+    student.setFirstName("John");
+    student.setLastName("Doe");
+    student.setYear(2);
+    student.setSpecialty("IT");
+    student.setAge(20);
+    student.setEmail("john@gmail.com");
+    Long studentId = student.getId();
 
     when(studentRepository.findById(studentId)).thenReturn(Optional.of(student));
 
     // Act
-    Student result = studentService.getStudentById(studentId);
+    StudentDTO result = studentService.getStudentById(studentId);
 
     // Assert
     Assertions.assertNotNull(result);
-    Assertions.assertEquals(student, result);
+    assertEquals(student.getEmail(), result.email);
     verify(studentRepository, times(1)).findById(studentId);
   }
 
@@ -69,22 +91,28 @@ public class StudentServiceImplTest {
   @DisplayName("Given a student, when createStudent is called, then the student is created")
   public void testCreateStudent() {
     // Arrange
-    Student student = new Student(null, "John", 20, "john@gmail.com");
+    Student student = new Student();//(null, "John", 20, "john@gmail.com");
+    student.setFirstName("John");
+    student.setLastName("Doe");
+    student.setYear(2);
+    student.setSpecialty("IT");
+    student.setAge(20);
+    student.setEmail("john@gmail.com");
 
     when(studentRepository.save(student)).thenReturn(student);
 
     // Act
-    Student result = studentService.createStudent(student);
+    StudentDTO result = studentService.createStudent(student);
 
     // Assert
     Assertions.assertNotNull(result);
-    Assertions.assertEquals(student, result);
+    assertEquals(student.getEmail(), result.email);
     verify(studentRepository, times(1)).save(student);
   }
 
   @Test
   @DisplayName("Given a student ID, when deleteStudent is called, then the corresponding student is deleted")
-  public void testDeleteStudent() {
+  void testDeleteStudent() {
     // Arrange
     Long studentId = 1L;
 
@@ -96,30 +124,26 @@ public class StudentServiceImplTest {
   }
 
   @Test
-  public void updateStudent_ShouldReturnUpdatedStudent() throws Exception {
+  void updateStudent_ShouldReturnUpdatedStudent() throws Exception {
     // Arrange
     Long id = 1L;
     Student existingStudent = new Student();
-    existingStudent.setStudentId(id);
-    existingStudent.setName("John Doe");
+    existingStudent.setId(id);
+    existingStudent.setFirstName("John");
+    existingStudent.setLastName("Doe");
     existingStudent.setAge(25);
     existingStudent.setEmail("john.doe@example.com");
 
-    Student updatedStudent = new Student();
-    updatedStudent.setName("Jane Doe");
-    updatedStudent.setAge(27);
-    updatedStudent.setEmail("jane.doe@example.com");
+    StudentDTO updatedStudent = new StudentDTO(2, "IT", "jane.doe@example.com");
 
     when(studentRepository.findStudentByStudentId(id)).thenReturn(Optional.of(existingStudent));
     when(studentRepository.save(existingStudent)).thenReturn(existingStudent);
 
     // Act
-    Student result = studentService.updateStudent(id, updatedStudent);
+    StudentDTO result = studentService.updateStudent(id, updatedStudent);
 
     // Assert
-    assertEquals(existingStudent.getStudentId(), result.getStudentId());
-    assertEquals(updatedStudent.getName(), result.getName());
-    assertEquals(updatedStudent.getAge(), result.getAge());
-    assertEquals(updatedStudent.getEmail(), result.getEmail());
+    assertEquals(existingStudent.getYear(), result.year);
+    assertEquals(updatedStudent.email, result.email);
   }
 }

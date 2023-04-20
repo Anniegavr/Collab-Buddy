@@ -1,7 +1,7 @@
-package com.collab.buddy.CollabBuddy.doubles;
+package com.collab.buddy.doubles;
 
-import com.collab.buddy.CollabBuddy.teacher.Teacher;
-import com.collab.buddy.CollabBuddy.teacher.TeacherService;
+import com.collab.buddy.teacher.Teacher;
+import com.collab.buddy.teacher.TeacherService;
 
 import java.util.ArrayList;
 import java.util.List;

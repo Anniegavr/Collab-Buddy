@@ -1,22 +1,32 @@
-package com.collab.buddy.CollabBuddy.doubles;
+package com.collab.buddy.doubles;
 
-import com.collab.buddy.CollabBuddy.teacher.Teacher;
-import com.collab.buddy.CollabBuddy.teacher.TeacherRepository;
-import com.collab.buddy.CollabBuddy.teacher.TeacherService;
-import com.collab.buddy.CollabBuddy.teacher.TeacherServiceImpl;
+import com.collab.buddy.teacher.Teacher;
+import com.collab.buddy.teacher.TeacherRepository;
+import com.collab.buddy.teacher.TeacherService;
+import com.collab.buddy.teacher.TeacherServiceImpl;
+import com.collab.buddy.teacher.TeacherRepository;
+import com.collab.buddy.teacher.TeacherServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
-public class TeacherServiceMockTest {
+class TeacherServiceMockTest {
+    @Autowired
+    TeacherRepository teacherRepository;
+
+    @Autowired
+    TeacherServiceImpl teacherService;
 
     @Test
-    public void testUpdateTeacher() {
+    void testUpdateTeacher() {
         // Create a mock TeacherRepository
         TeacherRepository teacherRepositoryMock = mock(TeacherRepository.class);
 
         // Create a TeacherService with the mock repository
-        TeacherService teacherService = new TeacherServiceImpl(teacherRepositoryMock);
+        teacherService = new TeacherServiceImpl(teacherRepositoryMock);
 
         // Define the behavior of the mock repository's findById method
         Teacher teacher = new Teacher();

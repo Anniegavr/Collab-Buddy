@@ -1,4 +1,4 @@
-package com.collab.buddy.CollabBuddy.teacher;
+package com.collab.buddy.teacher;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

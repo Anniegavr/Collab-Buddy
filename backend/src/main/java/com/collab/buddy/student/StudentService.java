@@ -1,14 +1,16 @@
 package com.collab.buddy.student;
 
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 
 
 public interface StudentService {
-    List<Student> getAllStudents();
-    Student getStudentById(Long id);
+    List<StudentDTO> getAllStudents();
+    StudentDTO getStudentById(Long id);
 
-    Student createStudent(Student student);
-    void deleteStudent(Long id);
+    StudentDTO createStudent(Student student);
+    ResponseEntity.BodyBuilder deleteStudent(Long id);
 
-    Student updateStudent(Long id, Student student) throws Exception;
+    StudentDTO updateStudent(Long id, StudentDTO student) throws Exception;
 }

@@ -1,5 +1,7 @@
 package com.collab.buddy.student;
 
+import com.collab.buddy.config.role.ERole;
+import com.collab.buddy.general.user.AbstractUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Student extends  AbstractUser{
+public class Student extends AbstractUser {
     @Column(name = "year", nullable = false)
     private Integer year;
     @Column(name="specialty", nullable = false)

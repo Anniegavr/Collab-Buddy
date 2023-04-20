@@ -1,4 +1,4 @@
-package com.collab.buddy.CollabBuddy.student;
+package com.collab.buddy.student;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
