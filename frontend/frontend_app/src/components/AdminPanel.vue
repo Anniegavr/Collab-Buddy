@@ -2,7 +2,7 @@
   <div class="admin-panel">
     <div class="admin-panel-grid">
       <router-link to="/admin" class="admin-panel-item">
-        <TotalRequests />
+        <TotalRequests class="total_req"/>
       </router-link>
       <router-link to="/users" class="admin-panel-item">
         <h2>All Users</h2>
@@ -39,7 +39,7 @@ export default {
 
   name: 'AdminPanel',
   components: {
-    TotalRequests,
+    TotalRequests
   }
 };
 </script>
@@ -49,8 +49,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f1f1f1;
+  max-width: fit-content;
+  max-height: fit-content;
 }
 
 .admin-panel-grid {
@@ -63,8 +63,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
+  background-color: #bfbed7;
+  border: 1px solid #330b0b;
   border-radius: 10px;
   padding: 20px;
   text-align: center;

@@ -24,9 +24,11 @@ export default {
   computed: {
     pageTitle() {
       switch (this.$route.path) {
+        case '/':
+          return 'Home';
         case '/login':
           return 'Login';
-        case 'admin_proxy':
+        case '/admin_proxy':
           return 'Admin Authentication';
         case '/signup':
           return 'Sign Up';
@@ -42,7 +44,7 @@ export default {
           return 'Release Assignment';
         case '/profile':
           return 'Profile';
-        case '/admin/skill_types':
+        case '/admin/skill-types':
           return 'Skill Types';
         case '/admin/assignment-types':
           return "Assignment Types";
@@ -83,6 +85,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 12%;
 }
 </style>
