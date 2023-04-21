@@ -18,7 +18,7 @@
           <div></div>
         </div>
         <div id="strength"></div>
-        <input type="submit" value="Create Profile" v-on:click="submitForm"/>
+        <input type="submit" value="Create Profile"  v-on:click="submitForm"/>
         <input type="submit" id="guestButton" value="Enter as guest" v-on:click="enterAsGuest"/>
       </form>
     </div>
@@ -31,6 +31,7 @@ import useValidate from '@vuelidate/core'
 import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators'
 import {computed, reactive} from "vue";
 import * as state from "@vuelidate/validators";
+import axios from "axios";
 export default {
   setup() {
     const state = reactive({
@@ -77,45 +78,73 @@ export default {
     // Router.push('/home')
     submitForm(e){
       e.preventDefault();
-      this.v$.$validate() // checks all inputs
-      if (!this.v$.$error) {
-        alert('Success!')
-        const body = {
-          username: this.name,
-          email: this.email,
-          password: this.password
-        }
-        fetch('/api/auth/signup', {
-          method: 'POST',
-          body: JSON.stringify(body),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-            .then(response => {
-              if (response.ok) {
-                this.showError = false;
-                this.message = 'Signup accepted';
-                this.name = "";
-                this.email = "";
-                this.password = "";
-                this.password.confirm= "";
-                Router.push('/home');
-              } else {
-                this.message = "";
-                this.message = 'Signup not accepted';
-                this.name = "";
-                this.email = "";
-                this.password = "";
-                this.password.confirm= "";
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
-      } else {
-        alert('Sorry, we couldn\'t process your data. Make sure it is correct.')
+      const body = {
+        username: this.name,
+        email: this.email,
+        password: this.password
       }
+      axios.post('http://localhost:8080/api/auth/signup', body, {
+      })
+          .then(response => {
+            if (response.status === 200) {
+              this.showError = false;
+              this.message = 'Signup accepted';
+              this.name = "";
+              this.email = "";
+              this.password = "";
+              this.password= "";
+              Router.push('/home');
+            } else {
+              this.message = "";
+              this.message = 'Signup not accepted';
+              this.name = "";
+              this.email = "";
+              this.password = "";
+              this.password= "";
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      // this.v$.$validate() // checks all inputs
+      // if (!this.v$.$error) {
+      //   alert('Success!')
+      //   const body = {
+      //     username: this.name,
+      //     email: this.email,
+      //     password: this.password
+      //   }
+      //   fetch('http://10.2.2.2:8080/api/auth/signup', {
+      //     hod: 'POST',
+      //     body: JSON.stringify(body),
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     }
+      //   })
+      //       .then(response => {
+      //         if (response.ok) {
+      //           this.showError = false;
+      //           this.message = 'Signup accepted';
+      //           this.name = "";
+      //           this.email = "";
+      //           this.password = "";
+      //           this.password.confirm= "";
+      //           Router.push('/home');
+      //         } else {
+      //           this.message = "";
+      //           this.message = 'Signup not accepted';
+      //           this.name = "";
+      //           this.email = "";
+      //           this.password = "";
+      //           this.password.confirm= "";
+      //         }
+      //       })
+      //       .catch(error => {
+      //         console.error('Error:', error);
+      //       });
+      // } else {
+      //   alert('Sorry, we couldn\'t process your data. Make sure it is correct.')
+      // }
 
     },
   },

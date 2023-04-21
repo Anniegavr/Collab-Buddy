@@ -10,7 +10,7 @@
 <script>
 import NavigationBar from "./components/NavigationBar.vue";
 import FloatingMenuButton from "./components/FloatingMenuButton.vue";
-import { useStore } from 'pinia';
+
 export default {
   name: 'App',
   components: {
@@ -20,11 +20,6 @@ export default {
   },
   data() {
   //   showSlideMenu: false
-  },
-  created() {
-    const store = useStore();
-    const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    store.theme = darkTheme ? 'dark' : 'light';
   },
   computed: {
     pageTitle() {

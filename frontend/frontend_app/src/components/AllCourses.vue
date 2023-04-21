@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "AllCourses"
+  name: "AllCourses",
   data() {
     return {
       courses: [

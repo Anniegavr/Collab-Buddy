@@ -17,14 +17,10 @@
 </template>
 
 <script>
-import Router from "../router.js";
+import Router from "../router.ts";
 
 export default {
   name: "SignUpPage",
-  created() {
-    const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', darkTheme ? 'dark' : 'light');
-  }
   methods: {
     submitForm(e){
       e.preventDefault()
@@ -33,10 +29,9 @@ export default {
         alert('Success!')
         const body = {
           username: this.name,
-          email: this.email,
           password: this.password
         }
-        fetch('/api/auth/login', {
+        fetch('/api/auth/signin', {
           method: 'POST',
           body: JSON.stringify(body),
           headers: {
