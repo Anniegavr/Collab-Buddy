@@ -66,6 +66,8 @@ export default {
           return 'Pending Negotiations';
         case '/admin/schedule_config':
           return 'Schedule Configuration';
+        case '/students':
+          return 'All Students'
         default:
           return 'Not a course';
       }
