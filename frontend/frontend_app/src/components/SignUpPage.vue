@@ -3,7 +3,8 @@
     <div id="Signup">
       <h1>Enter the Details</h1>
       <form id='form-post'>
-        <input type="text" v-model="state.name" placeholder="username" id="name"/>
+        <input type="text" v-model="state.firstName" placeholder="first name" id="name"/>
+        <input type="text" v-model="state.lastName" placeholder="last name" id="name"/>
         <input type="email" v-model="state.email" placeholder="email" id="email"/>
         <span v-if="v$.email.$error"> {{ v$.email.$errors[0].$message }} </span>
         <input type="password" v-model="state.password.password" placeholder="password" id="password"/>
@@ -35,7 +36,8 @@ import axios from "axios";
 export default {
   setup() {
     const state = reactive({
-      name:'',
+      firstName:'',
+      lastName:'',
       email: '',
       password: {
         password: '',
@@ -45,8 +47,9 @@ export default {
     const mustBe = (value) => value.sameAs
     const rules = computed(() => {
       return {
-        name: {required,
+        firstName: {required,
                 },
+        lastName: {required,},
         email: { required,
                   email,},
         password: {
@@ -61,7 +64,8 @@ export default {
   data() {
     return {
       v$: useValidate(),
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: {
         password: '',
@@ -74,10 +78,12 @@ export default {
       e.preventDefault();
       Router.push('/home');
     },
-    // if(this.input_name.toUpperCase() === "ADM" && this.input_password.toUpperCase() === "ADM"){
-    // Router.push('/home')
+
     submitForm(e){
       e.preventDefault();
+      this.v$.$validate() // checks all inputs
+      // if (!this.v$.$error) {
+        //   alert('Success!')
       const body = {
         username: this.name,
         email: this.email,
@@ -245,6 +251,7 @@ input[type='submit']{
   flex: none;
   order: 0;
   flex-grow: 0;
+  cursor: pointer;
 }
 
 #form-post{

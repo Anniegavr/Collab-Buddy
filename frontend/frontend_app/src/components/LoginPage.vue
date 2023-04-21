@@ -4,7 +4,7 @@
       <h1>Welcome</h1>
       <div id="post">
         <form id='form-post'>
-          <input type="text" v-model="name" placeholder="username" name="name" id="name"/>
+          <input type="text" v-model="email" placeholder="email" name="email" id="email"/>
           <input spellcheck="false" type="password" v-model="password" placeholder="password" name="password" id="password"/>
           <input type="submit" value="Enter" v-on:click="submitForm"/>
           <input type="submit" id="guestButton" value="Enter as guest" v-on:click="enterAsGuest"/>
@@ -18,50 +18,39 @@
 
 <script>
 import Router from "../router.ts";
+import axios from "axios";
+import {email} from "@vuelidate/validators";
 
 export default {
   name: "SignUpPage",
+  email: '',
+  password: '',
   methods: {
     submitForm(e){
       e.preventDefault()
-      this.v$.$validate()
-      if (!this.v$.$error) {
-        alert('Success!')
-        const body = {
-          username: this.name,
-          password: this.password
-        }
-        fetch('/api/auth/signin', {
-          method: 'POST',
-          body: JSON.stringify(body),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-            .then(response => {
-              if (response.ok) {
-                this.showError = false;
-                this.message = 'Login accepted';
-                this.name = "";
-                this.email = "";
-                this.password = "";
-                this.password.confirm= "";
-                Router.push('/home');
-              } else {
-                this.message = "";
-                this.message = 'Login not accepted';
-                this.name = "";
-                this.email = "";
-                this.password = "";
-                this.password.confirm= "";
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
-      } else {
-        alert('Sorry, we couldn\'t process your data. Make sure it is correct.')
+      const body = {
+        email: this.email,
+        password: this.password
       }
+      axios.post('http://localhost:8080/api/auth/signin', body, {
+      })
+          .then(response => {
+            if (response.status === 200) {
+              this.showError = false;
+              this.message = 'Signup accepted';
+              this.email = "";
+              this.password = "";
+              Router.push('/home');
+            } else {
+              this.message = "";
+              this.message = 'Signup not accepted';
+              this.email = "";
+              this.password = "";
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
     }
   }
 }
@@ -115,6 +104,7 @@ button {
   border: solid 1px;
   border-radius: 2em;
   font: inherit;
+  cursor: pointer;
 //padding: 0.75em 2em;
 }
 #form-post{
@@ -123,7 +113,7 @@ button {
   align-items: center;
   margin-bottom: 20px;
 }
-#name, #password{
+#email, #password{
   cursor: pointer;
   box-sizing: border-box;
   /* Auto layout */
@@ -146,6 +136,7 @@ input[type='submit']{
   justify-content: center;
   align-items: center;
   padding: 10px 15px;
+  cursor: pointer;
 
   position: center;
   width: 70%;
