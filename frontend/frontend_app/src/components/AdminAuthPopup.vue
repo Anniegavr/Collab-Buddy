@@ -8,6 +8,9 @@
   </div>
 </template>
 <script>
+import router from "../router.ts";
+import axios from "axios";
+
 export default {
   name: 'AdminAuthPopup',
   data() {
@@ -17,13 +20,33 @@ export default {
     };
   },
   methods: {
-    authenticateAdmin() {
+    authenticateAdmin(e) {
+      //this.$emit('authenticated');
       // Check admin credentials here
-      if (this.username === 'admin' && this.password === 'admin123') {
-        this.$emit('authenticated');
-      } else {
-        alert('Invalid admin credentials');
+      e.preventDefault()
+      const body = {
+        username: this.username,
+        password: this.password
       }
+      axios.post('http://localhost:8080/api/auth/signin', body, {
+      })
+          .then(response => {
+            if (response.status === 200) {
+              this.showError = false;
+              this.message = 'Signup accepted';
+              this.username = "";
+              this.password = "";
+              router.push('/admin_proxy');
+            } else {
+              this.message = "";
+              this.message = 'Signup not accepted';
+              this.username = "";
+              this.password = "";
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
     },
   },
 };

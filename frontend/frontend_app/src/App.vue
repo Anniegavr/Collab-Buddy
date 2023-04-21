@@ -29,7 +29,7 @@ export default {
         case '/login':
           return 'Login';
         case '/admin_proxy':
-          return 'Admin Authentication';
+          return 'Admin Panel';
         case '/signup':
           return 'Sign Up';
         case '/home':
@@ -39,7 +39,7 @@ export default {
         case '/teachers':
           return "All Teachers";
         case '/admin':
-          return 'Administration Panel';
+          return 'Administration Authentication First';
         case '/teacher/release_assignment':
           return 'Release Assignment';
         case '/profile':

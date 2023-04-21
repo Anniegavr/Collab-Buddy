@@ -15,11 +15,11 @@ const routes: RouteRecordRaw[] =  [
     },
     {
         path: '/admin',
-        component: () => import('./components/AdminPanel.vue')
+        component: () => import('./components/AdminAuthPopup.vue')
     },
     {
         path: '/admin_proxy',
-        component: () => import('./components/AdminAuthPopup.vue')
+        component: () => import('./components/AdminPanel.vue')
     },
     {
         path: '/user',
