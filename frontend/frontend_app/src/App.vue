@@ -3,11 +3,10 @@
     <NavigationBar :title="pageTitle"/>
     <FloatingMenuButton/>
     <router-view />
-<!--    <Total-->
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import NavigationBar from "./components/NavigationBar.vue";
 import FloatingMenuButton from "./components/FloatingMenuButton.vue";
 
@@ -19,7 +18,6 @@ export default {
 
   },
   data() {
-  //   showSlideMenu: false
   },
   computed: {
     pageTitle() {
@@ -34,25 +32,33 @@ export default {
           return 'Sign Up';
         case '/home':
           return 'Home';
+        case '/todo':
+          return 'My To Do List'
         case '/users':
           return "All Users"
-        case '/teachers':
+        case '/admin/teachers':
           return "All Teachers";
         case '/admin':
-          return 'Administration Authentication First';
+          return 'Admin Panel';
         case '/teacher/release_assignment':
           return 'Release Assignment';
         case '/profile':
           return 'Profile';
-        case '/admin/skill-types':
+        case '/admin/skill_types':
           return 'Skill Types';
+        case '/admin/add_skill_types':
+          return 'Add Skill Types';
         case '/admin/assignment-types':
           return "Assignment Types";
         case '/admin/all_courses':
           return 'All Courses';
         case '/course_overview':
           return 'Course Overview';
-        case '/admin/assignment_progress':
+        case '/admin/schedule-config':
+          return 'Schedule Configuration';
+        case '/admin/all_config':
+          return 'All Configurations';
+        case '/assignment_progress':
           return 'Assignments Progress';
         case '/admin/add_groups':
           return 'Add Group';

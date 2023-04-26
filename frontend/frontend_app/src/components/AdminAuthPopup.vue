@@ -1,13 +1,15 @@
 <template>
   <div class="admin-auth-popup">
-    <form v-on:submit.prevent="authenticateAdmin">
-      <input type="text" v-model="username" placeholder="Admin username" required>
-      <input type="password" v-model="password" placeholder="Admin password" required>
-      <button type="submit">Authenticate</button>
-    </form>
+      <form v-on:submit.prevent="authenticateAdmin">
+        <button @click="closePopup" class="closing_popup">X</button>
+        <input type="text" v-model="username" placeholder="Admin username" required>
+        <input type="password" v-model="password" placeholder="Admin password" required>
+        <button type="submit">Authenticate</button>
+        <span v-if="showError" class="error-message">{{ errorMessage }}</span>
+        </form>
   </div>
 </template>
-<script>
+<script >
 import router from "../router.ts";
 import axios from "axios";
 
@@ -17,6 +19,9 @@ export default {
     return {
       username: '',
       password: '',
+      showError: false,
+      message: '',
+      errorMessage: 'Something went wrong',
     };
   },
   methods: {
@@ -38,16 +43,21 @@ export default {
               this.password = "";
               router.push('/admin_proxy');
             } else {
-              this.message = "";
-              this.message = 'Signup not accepted';
+              this.message = this.errorMessage;
+              this.showError = true;
               this.username = "";
               this.password = "";
             }
           })
           .catch(error => {
             console.error('Error:', error);
+            this.message = this.errorMessage;
+            this.showError = true;
           });
     },
+    closePopup() {
+      router.back()
+    }
   },
 };
 </script>
@@ -95,4 +105,10 @@ button {
 button:hover {
   background: rgba(25, 91, 6, 0.76);
 }
+
+.closing_popup {
+  align-self: flex-end;
+  background-color: #003566;
+}
+
 </style>

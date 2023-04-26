@@ -10,10 +10,10 @@
       <router-link to="/students" class="admin-panel-item">
         <h2>All Students</h2>
       </router-link>
-      <router-link to="/teachers" class="admin-panel-item">
+      <router-link to="/admin/teachers" class="admin-panel-item">
         <h2>All Teachers</h2>
       </router-link>
-      <router-link to="/admin/skill-types" class="admin-panel-item">
+      <router-link to="/admin/skill_types" class="admin-panel-item">
         <h2>All Skill Types</h2>
       </router-link>
       <router-link to="/admin/assignment-types" class="admin-panel-item">
@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import TotalRequests from "./TotalRequests.vue";
 export default {
 

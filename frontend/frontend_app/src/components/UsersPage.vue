@@ -1,7 +1,7 @@
 <template>
   <div class="admin-panel">
     <div class="user-management">
-      <table>
+      <table class="common_table">
         <thead>
         <tr>
           <th>ID</th>
@@ -26,30 +26,66 @@
   </div>
 </template>
 
-<script>
+<script >
+import axios from "axios";
+import EditForm from "./EditForm.vue";
+
 export default {
   name: "UsersPage",
+  id: '',
+  email: '',
+  password: '',
   data() {
     return {
-      users: [
-        {id: 1, name: 'John Doe', email: 'john.doe@example.com'},
-        {id: 2, name: 'Jane Doe', email: 'jane.doe@example.com'},
-        {id: 3, name: 'Bob Smith', email: 'bob.smith@example.com'}
-      ]
+      users: this.getAllUsers()
     }
   },
   methods: {
+    getAllUsers(e){
+      axios.get('http://localhost:8080/admin/users/all')
+          .then(response => {
+            this.users = response.data;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+    },
     editUser(user) {
-      // Handle edit user action
+      // Find the index of the user to edit
+      const index = this.users.findIndex(u => u.id === user.id);
+      // If the user is found
+      if (index !== -1) {
+        // Prompt the user to enter the new name and email
+        const newName = prompt('Enter the new name:', user.name);
+        const newEmail = prompt('Enter the new email:', user.email);
+        // If the user entered a new name and email
+        if (newName && newEmail) {
+          // Update the user object with the new name and email
+          this.users[index].name = newName;
+          this.users[index].email = newEmail;
+        }
+      }
     },
     deleteUser(user) {
-      // Handle delete user action
+      // Find the index of the user to delete
+      const index = this.users.findIndex(u => u.id === user.id);
+      // If the user is found
+      if (index !== -1) {
+        // Prompt the user to confirm the deletion
+        const confirmed = confirm(`Are you sure you want to delete ${user.name}?`);
+        // If the user confirms the deletion
+        if (confirmed) {
+          // Remove the user object from the users array
+          this.users.splice(index, 1);
+        }
+      }
     }
   }
 }
 </script>
 
 <style>
+@import 'style/common_table.css';
 .admin-panel {
   max-width: 800px;
   margin: 0 auto;
@@ -60,34 +96,4 @@ export default {
   margin-top: 20px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background-color: #eee;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.edit-btn, .delete-btn {
-  padding: 5px 10px;
-  margin-right: 10px;
-  border: none;
-  background-color: #eee;
-  cursor: pointer;
-}
-
-.edit-btn:hover, .delete-btn:hover {
-  background-color: #ddd;
-}
 </style>

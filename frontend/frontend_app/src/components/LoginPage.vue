@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script >
 import Router from "../router.ts";
 import axios from "axios";
 import {email} from "@vuelidate/validators";
@@ -25,6 +25,7 @@ export default {
   name: "SignUpPage",
   email: '',
   password: '',
+  userId: '',
   methods: {
     submitForm(e){
       e.preventDefault()
@@ -40,6 +41,7 @@ export default {
               this.message = 'Signup accepted';
               this.email = "";
               this.password = "";
+              localStorage.setItem(this.userId, 5)
               Router.push('/home');
             } else {
               this.message = "";

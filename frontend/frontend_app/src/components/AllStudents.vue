@@ -1,7 +1,8 @@
 <template>
   <div class="admin-panel">
     <div class="user-management">
-      <table onload="fetchStudents">
+      <SearchField :search-term.sync="searchTerm"></SearchField>
+      <table class="common_table">
         <thead>
         <tr>
           <th><span>ID</span></th>
@@ -14,33 +15,51 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="student in students" :key="student.id">
+        <tr v-for="student in filteredStudents" :key="student.id">
           <td>{{ student.id }}</td>
-          <td>{{student.firstName}}</td>
-          <td>{{student.lastName}}</td>
-          <td>{{ student.email }}</td>
-          <td>{{student.year}}</td>
-          <td>{{student.specialty}}</td>
-          <td>
-            <button class="edit-btn" @click="editStudent(student)">Edit</button>
-            <button class="delete-btn" @click="deleteStudent(student)">Delete</button>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{ student.email }}</td>
+            <td>{{student.year}}</td>
+            <td>{{student.specialty}}</td>
+            <td>
+              <button class="edit-btn" @click="editStudent(student)">Edit</button>
+              <button class="delete-btn" @click="deleteStudent(student)">Delete</button>
           </td>
         </tr>
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
+  </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import SearchIcon from "./SearchIcon.vue";
+import { ref } from 'vue';
+import SearchField from "./SearchField.vue";
+import searchField from "./SearchField.vue";
 export default {
   name: "AllStudents",
+  components: {SearchField, SearchIcon},
   students: [],
   data() {
     return {
-      students: this.fetchStudents()
+      students: this.fetchStudents(),
+      searchTerm: ''
+    }
+  },
+  computed: {
+    filteredStudents() {
+      if (this.searchTerm) {
+        console.log(this.students.filter((student) =>
+            student.firstName.toLowerCase()));
+        return this.students.filter((student) =>
+            student.firstName.toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
+      } else {
+        return this.students;
+      }
     }
   },
   methods: {
@@ -54,17 +73,43 @@ export default {
           });
     },
     editStudent(student) {
-      // Handle edit user action
+      // Find the index of the user to edit
+      const index = this.students.findIndex(u => u.id === student.id);
+      // If the user is found
+      if (index !== -1) {
+        // Prompt the user to enter the new name and email
+        const newFirstName = prompt('Enter the new firstname:', student.firstName);
+        const newLastName = prompt('Enter the new lastname:', student.lastName);
+        const newEmail = prompt('Enter the new email:', student.email);
+        // If the user entered a new name and email
+        if (newFirstName && newLastName && newEmail) {
+          // Update the user object with the new name and email
+          this.students[index].firstName = newFirstName;
+          this.students[index].lastName = newLastName;
+          this.students[index].email = newEmail;
+        }
+      }
     },
     deleteStudent(student) {
-      // Handle delete user action
+      // Find the index of the user to delete
+      const index = this.students.findIndex(u => u.id === student.id);
+      // If the user is found
+      if (index !== -1) {
+        // Prompt the user to confirm the deletion
+        const confirmed = confirm(`Are you sure you want to delete ${student.firstName} ${student.lastName} ?`);
+        // If the user confirms the deletion
+        if (confirmed) {
+          // Remove the user object from the users array
+          this.students.splice(index, 1);
+        }
+      }
     },
-  }
+  },
 }
-
 </script>
 
 <style scoped>
+@import 'style/common_table.css';
 .admin-panel {
   vertical-align: center;
   max-width: fit-content;
@@ -76,56 +121,4 @@ export default {
   margin-top: 20px;
 }
 
-table {
-  width: 100%;
-  vertical-align: center;
-  border-collapse: collapse;
-  border-spacing: 0;
-  text-align: center;
-  overflow-y: scroll;
-}
-
-th, td {
-  padding: 6px;
-  vertical-align: middle;
-  border-collapse: collapse;
-  box-shadow: 0 13px 4px rgba(0, 0, 0, 0.18);
-  color: #ffffff;
-  font-weight: bold;
-}
-
-th {
-  color: white;
-  background: #c1aef5;
-  background: linear-gradient(-180deg, #8d75d0 0%, rgba(121, 90, 208, 0.87) 100%);
-  text-align: center;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 10px;
-}
-
-tbody td {
-  text-align: center;
-  padding: 10px;
-  background: linear-gradient(180deg, rgba(11, 10, 26, 0.63) 9.9%, rgba(115, 124, 168, 0.89) 100.0%);
-  font-size: large;
-}
-
-.edit-btn, .delete-btn {
-  background: linear-gradient(90deg, #705CA6 0%, rgba(97, 68, 173, 0.98) 100%);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-right: 5px;
-}
-
-.edit-btn:hover, .delete-btn:hover {
-  opacity: 0.8;
-}
-
-.edit-btn:hover, .delete-btn:hover {
-  background-color: #ddd;
-}
 </style>

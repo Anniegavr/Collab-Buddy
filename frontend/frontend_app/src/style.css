@@ -15,7 +15,7 @@
 }
 
 a {
-  font-weight: 500;
+  font-weight: bold;
   color: #646cff;
   text-decoration: inherit;
 }
@@ -59,8 +59,14 @@ button:focus-visible {
   padding: 2em;
 }
 
+.error-message {
+  color: red;
+  font-weight: bold;
+  font-size: medium;
+}
+
 #app {
-  max-width: 1280px;
+  max-width: fit-content;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;

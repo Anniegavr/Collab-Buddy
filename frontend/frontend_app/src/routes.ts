@@ -10,6 +10,10 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/MainPage.vue'),
     },
     {
+        path: '/todo',
+        component: () => import('./components/ToDoPage.vue'),
+    },
+    {
         path: '/login',
         component: () => import('./components/LoginPage.vue'),
     },
@@ -77,13 +81,17 @@ const routes: RouteRecordRaw[] =  [
         meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
     },
     {
-        path: '/admin/assignment_progress',
+        path: '/assignment_progress',
         component: () => import('./components/AssignmentsProgress.vue'),
         meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
     },
     {
-        path: '/teachers',
+        path: '/admin/teachers',
         component: () => import('./components/TeachersPage.vue')
+    },
+    {
+        path: '/admin/assignment-types',
+        component: () => import('./components/AssignmentTypesPage.vue')
     },
     {
         path: '/students',
