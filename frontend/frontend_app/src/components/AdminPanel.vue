@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-panel">
+  <div class="admin-panel" onload="loadContent()">
     <div class="admin-panel-grid">
       <router-link to="/admin" class="admin-panel-item">
         <TotalRequests class="total_req"/>
@@ -40,18 +40,17 @@ export default {
   name: 'AdminPanel',
   components: {
     TotalRequests
+  },
+  methods: {
+    loadContent() {
+      window.location.reload()
+    }
   }
 };
 </script>
 
 <style>
-.admin-panel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: fit-content;
-  max-height: fit-content;
-}
+@import "./style/common_table.css";
 
 .admin-panel-grid {
   display: grid;
@@ -69,6 +68,7 @@ export default {
   padding: 20px;
   text-align: center;
   transition: transform 0.3s;
+  box-shadow: 0px 8px 11px -2px rgba(0, 0, 0, 0.5);
 }
 
 .admin-panel-item:hover {

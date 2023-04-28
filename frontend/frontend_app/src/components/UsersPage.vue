@@ -1,43 +1,49 @@
 <template>
-  <div class="admin-panel">
-    <div class="user-management">
-      <table class="common_table">
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="user in users" :key="user.id">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <button class="edit-btn" @click="editUser(user)">Edit</button>
-            <button class="delete-btn" @click="deleteUser(user)">Delete</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+  <div id="app">
+    <div class="admin-panel">
+        <SearchField :search-term.sync="searchTerm"></SearchField>
+        <table class="common_table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="user in users" :key="user.id">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <button class="edit-btn" @click="editUser(user)">Edit</button>
+              <button class="delete-btn" @click="deleteUser(user)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
     </div>
   </div>
+
 </template>
 
 <script >
 import axios from "axios";
 import EditForm from "./EditForm.vue";
+import SearchField from "./SearchField.vue";
+import SearchIcon from "./SearchIcon.vue";
 
 export default {
   name: "UsersPage",
   id: '',
   email: '',
   password: '',
+  components: {SearchField, SearchIcon},
   data() {
     return {
-      users: this.getAllUsers()
+      users: this.getAllUsers(),
+      searchTerm: '',
     }
   },
   methods: {
@@ -86,14 +92,5 @@ export default {
 
 <style>
 @import 'style/common_table.css';
-.admin-panel {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.user-management {
-  margin-top: 20px;
-}
 
 </style>

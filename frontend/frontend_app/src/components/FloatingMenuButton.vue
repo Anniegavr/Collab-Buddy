@@ -1,7 +1,9 @@
 <template>
   <div class="all_menu">
-    <div class="circle" @click="toggleMenu">
-      <div class="plus">+</div>
+    <div class="circle" v-click-outside="closemenu" @click="toggleMenu">
+      <div class="plus" style="justify-items: center;">
+        <img src="./icons/plus_icon.svg" alt="+" style="height: 6vh; margin-top: 2vh">
+      </div>
     </div>
     <div class="menu" :class="{ active: menuActive }">
       <ul>
@@ -15,13 +17,14 @@
         <li><router-link @click="fetchData" to="/admin/add_groups">Add group</router-link></li>
         <li><router-link @click="fetchData" to="/admin/all_config">View All Configurations</router-link></li>
         <li><router-link @click="fetchData" to="/admin">Admin Panel</router-link></li>
+        <li><router-link @click="fetchData" to="/assignment_progress">Active Assignments</router-link></li>
       </ul>
     </div>
   </div>
 </template>
 
 <script >
-import { defineComponent} from "vue";
+import vClickOutside from "click-outside-vue3"
 import Api from "../Api.ts";
 export default {
     data() {
@@ -30,6 +33,9 @@ export default {
       };
     },
     methods: {
+      closemenu() {
+        this.menuActive = false;
+      },
       toggleMenu() {
         this.menuActive = !this.menuActive;
       },
@@ -51,15 +57,15 @@ export default {
 }
 .circle {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 5vh;
+  right: 5vh;
   background: radial-gradient(
       50% 50% at 50% 50%,
-      #705CA6 0%,
-      rgba(92, 66, 162, 0.98) 100%
+      #2c7da0 14%,
+      #01497c 86%
   );
-  width: 8em;
-  height: 8em;
+  width: 14vh;
+  height: 14vh;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -76,10 +82,10 @@ export default {
 }
 
 .menu {
-  position: fixed;
-  bottom: 11em;
+  position: absolute;
+  bottom: 17vh;
   right: 8%;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.75);
   padding: 1.5%;
   border-radius: 10px;
   display: none;

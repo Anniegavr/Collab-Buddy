@@ -1,7 +1,8 @@
 <template>
-<div id="home_content" class="grid">
+<div id="home_content" class="grid" onload="loadContent()">
   <div id="left_part">
-    <img src="./assets/mock_graph.png" id="mock_graph">
+<!--    <img src="./assets/mock_graph.png" id="mock_graph" alt="Schedule_Graph">-->
+    <DonutGraph></DonutGraph>
     <router-link to="/todo">
       <div class="common_link">
         To Do
@@ -17,9 +18,13 @@
     </div>
   </div>
 </div>
+
 </template>
 <script lang="ts">
+import DonutGraph from "./DonutGraph.vue";
+
 export default {
+  components: {DonutGraph},
   data() {
     return {
       courses: [
@@ -63,20 +68,13 @@ router-link {
 
 @media (min-width: 1024px) {
   #mock_graph {
-    min-height: 25%;
-    max-height: 50%;
-    margin-top: 5%;
+    height: 60vh;
+    margin-top: 12vh;
     right: 5em;
     margin-bottom: 1rem;
     mix-blend-mode: initial;
   }
-  #left_part {
-    margin-right: 1rem; /* margin between the two columns */
-    max-width: 100%;
-    flex-direction: column;
-    display: table-row;
-    align-items: center;
-  }
+
   #right_part {
     max-width: 100%;
     display: -webkit-flex;
@@ -108,14 +106,15 @@ router-link {
   }
   #right_part {
     max-width: 100%;
-    display: -webkit-flex;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
   #mock_graph {
-    min-height: 10%;
-    max-height: 15%;
-    margin-top: 25%;
+    //min-height: 10%;
+    margin-top: 25vh;
+    height: 10vh;
+    width: fit-content;
   }
   .course-item {
     min-height: 20%;

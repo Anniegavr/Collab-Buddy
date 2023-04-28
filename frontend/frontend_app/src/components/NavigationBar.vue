@@ -1,21 +1,31 @@
 <template>
-  <nav id="menu">
-    <router-link to="/" class="home-link">
-      <img class="menu_icon" src="./icons/homeIcon.png" alt="Home">
-    </router-link>
-    <router-link to="/">
-      <icon-home class="home_icon"></icon-home>
-    </router-link>
+<div >
+    <nav id="menu">
+      <router-link to="/" class="home-link">
+        <img class="menu_icon" src="./icons/homeIcon.png" alt="Home">
+      </router-link>
 
-    <img src="./assets/nav/search.svg" alt="search_icon" class="search_icon">
-    <p id="menu-title">{{title}}</p>
+      <p id="menu-title">{{title}}</p>
 
-  </nav>
+      <div class="right_icons">
+        <router-link to="/">
+          <icon-home class="home_icon"></icon-home>
+        </router-link>
+        <input class="search_field">
+        <img src="./assets/nav/search.svg" alt="search_icon" class="search_icon">
+        <router-link to="/login"><button style="height: 5vh; justify-content: center; padding: 0.5vh"><img src="./icons/login.png" style="max-height: 4vh"  alt="Auth"></button></router-link>
+
+      </div>
+    </nav>
+</div>
+
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import IconHome from "./icons/IconHome.vue";
+import ProgressIcon from "./icons/ProgressIcon.vue";
+import SearchField from "./SearchField.vue";
 const props = defineProps({
   title: {
     type: String,
@@ -24,68 +34,61 @@ const props = defineProps({
 })
 </script>
 
-<style scoped lang="scss">
-.home-link {
-  display: inline-block;
-}
-
-.search_icon {
-  position: absolute;
-  width: fit-content;
-  height: fit-content;
-  max-height: 40%;
-  right: 12%;
-  top: 30%;
-  float: right;
-  cursor: pointer;
-}
-.home_icon {
-  float: right;
-  z-index: 1;
-  color: #ffffff;
-  top: 30%;
-  right:5%;
-  position: absolute;
-  cursor: pointer;
-}
-.menu_icon {
-  max-height: 100%;
-  float: left; /* Add a float to move the home icon to the left */
-  position: absolute;
-  max-width: 62px;
-  left: 4%;
-  top: 30%;
-  color: #ffffff;
-  cursor: pointer;
-  z-index: 2;
-}
+<style scoped>
+@import "style/general_styles.css";
 #menu {
-  position: absolute;
-  width: 100%;
-  height: 5rem;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 10vh;
   left: 0;
-  top: -2px;
-  align-items: initial;
-
-  background: linear-gradient(180deg, rgba(18, 32, 46, 0.95) 9.9%, rgba(0, 5, 9, 0.95) 86.46%);
+  right: 0;
+  background: linear-gradient(180deg, #0582ca 3.9%, #006494 87.46%);
   box-shadow: 0 13px 4px rgba(0, 0, 0, 0.18);
   border-radius: 0;
-
-  text-align: center; /* center the menu-title */
+  display: inline-flex; /* add display flex */
 }
 
 #menu-title {
-  position: relative;
-  z-index: 1;
-  display: inline-grid; /* display as inline-block to center */
-  width: fit-content;
-  height: available;
-
   font-family: 'Open Sans',sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 33px;
+  font-size: 4vh;
   line-height: 50%;
   color: #FFFFFF;
+}
+
+
+.right_icons {
+  display: flex; /* add display flex */
+  align-items: center; /* add align-items center */
+  gap: 1vw;
+
+}
+
+.home-link {
+  display: flex; /* add display flex */
+  align-items: center; /* add align-items center */
+}
+
+.search_icon {
+  width: fit-content;
+  height: fit-content;
+  max-height: 4vh;
+  cursor: pointer;
+}
+.home_icon {
+  z-index: 1;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.menu_icon {
+  max-height: 100%;
+  height: 5vh;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 2;
+  margin-left: 2vw;
 }
 </style>

@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <NavigationBar :title="pageTitle"/>
-    <FloatingMenuButton/>
-    <router-view />
-  </div>
+  <NavigationBar :title="pageTitle"/>
+  <FloatingMenuButton/>
+  <router-view />
 </template>
 
 <script lang="ts">
 import NavigationBar from "./components/NavigationBar.vue";
 import FloatingMenuButton from "./components/FloatingMenuButton.vue";
+import "vue-router/dist/vue-router";
 
 export default {
   name: 'App',

@@ -1,22 +1,22 @@
 <template>
-  <div class="admin-panel">
-    <div class="user-management">
-      <SearchField :search-term.sync="searchTerm"></SearchField>
-      <table class="common_table">
-        <thead>
-        <tr>
-          <th><span>ID</span></th>
-          <th><span>First Name</span></th>
-          <th><span>Last Name</span></th>
-          <th><span>Email</span></th>
-          <th><span>Year</span></th>
-          <th><span>Specialt</span>y</th>
-          <th><span>Action</span></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="student in filteredStudents" :key="student.id">
-          <td>{{ student.id }}</td>
+  <div id="app">
+    <div class="admin-panel" onload="window.location.reload()">
+        <SearchField :search-term.sync="searchTerm"></SearchField>
+        <table class="common_table">
+          <thead>
+          <tr>
+            <th><span>ID</span></th>
+            <th><span>First Name</span></th>
+            <th><span>Last Name</span></th>
+            <th><span>Email</span></th>
+            <th><span>Year</span></th>
+            <th><span>Specialt</span>y</th>
+            <th><span>Action</span></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="student in filteredStudents" :key="student.id">
+            <td>{{ student.id }}</td>
             <td>{{student.firstName}}</td>
             <td>{{student.lastName}}</td>
             <td>{{ student.email }}</td>
@@ -25,11 +25,11 @@
             <td>
               <button class="edit-btn" @click="editStudent(student)">Edit</button>
               <button class="delete-btn" @click="deleteStudent(student)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
   </div>
 </template>
 
@@ -109,16 +109,6 @@ export default {
 </script>
 
 <style scoped>
-@import 'style/common_table.css';
-.admin-panel {
-  vertical-align: center;
-  max-width: fit-content;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.user-management {
-  margin-top: 20px;
-}
+@import './style/common_table.css';
 
 </style>

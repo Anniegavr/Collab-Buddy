@@ -1,0 +1,121 @@
+.search_field {
+    border-radius: 15vh;
+    height: 2vh;
+    padding: 1vh;
+    font-size: medium;
+    border-style: hidden;
+}
+
+.link_button {
+    background: none;
+    border: solid 1px;
+    border-radius: 2em;
+    font: inherit;
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    #menu-title{
+        margin-left: 25vw;
+        width: 40vw;
+        margin-right: 4vw;
+    }
+
+    .right_icons {
+        margin-right: 1vw;
+        width: 20vw;
+    }
+
+}
+
+.email_input, .name_input, .password_input{
+    cursor: pointer;
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+    width: 100%;
+    margin-top: 10px;
+    position: center;
+    background: #ffffff;
+    margin-bottom: 10px;
+    border: 1px solid #432C80;
+    border-radius: 15px;
+}
+
+.guest_button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+
+    position: center;
+    width: fit-content;
+    height: 43px;
+    left: 503px;
+    margin-top: 1rem;
+    top: 640px;
+
+    background: rgb(111, 124, 126);
+    mix-blend-mode: normal;
+    border: 1px solid #695a66;
+    box-shadow:  0px 4px 4px rgba(19, 39, 103, 0.25);
+    border-radius: 15px;
+
+    font-family: 'Open Sans',serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 30px;
+    /* identical to box height, or 200% */
+
+    text-align: center;
+
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.submit_button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+
+    position: center;
+    width: 70%;
+    height: fit-content;
+    left: 10%;
+    top: 30%;
+    margin-top: 10px;
+
+    background: #003566;
+    mix-blend-mode: normal;
+    border: 1px solid #003566;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+
+    font-family: 'Open Sans',serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 30px;
+    /* identical to box height, or 200% */
+
+    text-align: center;
+
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}

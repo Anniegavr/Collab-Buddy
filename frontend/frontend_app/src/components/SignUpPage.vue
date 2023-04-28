@@ -1,13 +1,13 @@
 <template >
   <div id="app" data-theme="light">
-    <div id="Signup">
+    <div id="Signup" onload="loadContent()">
       <h1>Enter the Details</h1>
       <form id='form-post'>
-        <input type="text" v-model="state.firstName" placeholder="first name" id="name"/>
-        <input type="text" v-model="state.lastName" placeholder="last name" id="name"/>
-        <input type="email" v-model="state.email" placeholder="email" id="email"/>
+        <input type="text" v-model="state.firstName" placeholder="first name" id="first_name" class="name_input"/>
+        <input type="text" v-model="state.lastName" placeholder="last name" id="last_name" class="name_input"/>
+        <input type="email" v-model="state.email" placeholder="email" id="signup_email" class="email_input"/>
         <span v-if="v$.email.$error"> {{ v$.email.$errors[0].$message }} </span>
-        <input type="password" v-model="state.password.password" placeholder="password" id="password"/>
+        <input type="password" v-model="state.password.password" placeholder="password" id="signup_password" class="password_input"/>
         <span v-if="v$.password.password.$error">
         {{ v$.password.password.$errors[0].$message }}
       </span>
@@ -19,14 +19,14 @@
           <div></div>
         </div>
         <div id="strength"></div>
-        <input type="submit" value="Create Profile"  v-on:click="submitForm"/>
-        <input type="submit" id="guestButton" value="Enter as guest" v-on:click="enterAsGuest"/>
+        <input type="submit" class="submit_button" value="Submit Information"  v-on:click="submitForm"/>
+        <router-link to="/home" class="guest_button">Enter as guest</router-link>
       </form>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Router from "../router.ts";
 import useValidate from '@vuelidate/core'
 import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators'
@@ -169,20 +169,13 @@ export default {
 
 <!-- Use preprocessors via the lang attribute! e.g. <style lang="scss"> -->
 <style>
-
+@import "./style/general_styles.css";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
-  margin-top: 0%;
+  margin-top: 13vh;
 }
 
-button {
-  background: none;
-  border: solid 1px;
-  border-radius: 2em;
-  font: inherit;
-//padding: 0.75em 2em;
-}
 /* Dark theme */
 [data-theme="dark"] body {
   background-color: #333;
@@ -199,9 +192,9 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20%;
+  margin-bottom: 20vh;
 }
-#name, #password, #confirm_password, #email{
+#first_name, #last_name, .password_input, #confirm_password, #email{
   cursor: pointer;
   box-sizing: border-box;
   /* Auto layout */
@@ -209,49 +202,13 @@ button {
   flex-direction: column;
   align-items: flex-start;
   padding: 10px 15px;
-  width: fit-content;
-  margin-top: 10px;
+  width: 20vw;
+  margin-top: 1vh;
   position: center;
   background: #FFFFFF;
   border: 1px solid #432C80;
   border-radius: 15px;
   color: #1a1a1a;
-}
-input[type='submit']{
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-
-  position: center;
-  width: fit-content;
-  height: 10%;
-  left: 10%;
-  top: 40%;
-
-  background: #003566;
-  mix-blend-mode: normal;
-  border: 1px solid #003566;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-
-  font-family: 'Open Sans',serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 30px;
-  /* identical to box height, or 200% */
-
-  text-align: center;
-
-  color: #FFFFFF;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  cursor: pointer;
 }
 
 #form-post{
@@ -304,34 +261,6 @@ textarea{
   width: 100%;
 }
 
-#guestButton {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  background: rgb(111, 124, 126);
-  mix-blend-mode: normal;
-  border: 1px solid #695a66;
-  box-shadow: inset 0px 4px 4px rgba(19, 39, 103, 0.25);
-  border-radius: 15px;
-
-  font-family: 'Open Sans',serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 30px;
-  /* identical to box height, or 200% */
-
-  text-align: center;
-
-  color: #FFFFFF;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
 
 #bars {
   margin:5px auto;
@@ -350,43 +279,6 @@ textarea{
   height: inherit;
   border-radius: inherit;
   transition: 0.4s;
-}
-
-#guestButton {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-
-  position: center;
-  width: fit-content;
-  height: 43px;
-  left: 503px;
-  margin-top: 1rem;
-  top: 640px;
-
-  background: rgb(111, 124, 126);
-  mix-blend-mode: normal;
-  border: 1px solid #695a66;
-  box-shadow: inset 0px 4px 4px rgba(19, 39, 103, 0.25);
-  border-radius: 15px;
-
-  font-family: 'Open Sans',serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 30px;
-  /* identical to box height, or 200% */
-
-  text-align: center;
-
-  color: #FFFFFF;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-auth-popup">
+  <div id="admin_popup" class="admin-auth-popup" >
       <form v-on:submit.prevent="authenticateAdmin">
         <button @click="closePopup" class="closing_popup">X</button>
         <input type="text" v-model="username" placeholder="Admin username" required>
@@ -10,7 +10,7 @@
   </div>
 </template>
 <script >
-import router from "../router.ts";
+import Router from "../router.ts";
 import axios from "axios";
 
 export default {
@@ -22,6 +22,7 @@ export default {
       showError: false,
       message: '',
       errorMessage: 'Something went wrong',
+      closethis: false,
     };
   },
   methods: {
@@ -41,7 +42,10 @@ export default {
               this.message = 'Signup accepted';
               this.username = "";
               this.password = "";
-              router.push('/admin_proxy');
+              Router.push('/admin_proxy');
+              this.$nextTick(() => {
+                this.closePopupAndNavigate();
+              });
             } else {
               this.message = this.errorMessage;
               this.showError = true;
@@ -56,8 +60,13 @@ export default {
           });
     },
     closePopup() {
-      router.back()
-    }
+      Router.back()
+    },
+    closePopupAndNavigate() {
+      const popup = document.getElementById('admin_popup');
+      popup.style.display = 'none';
+      Router.push('/admin_proxy');
+    },
   },
 };
 </script>
@@ -110,5 +119,4 @@ button:hover {
   align-self: flex-end;
   background-color: #003566;
 }
-
 </style>

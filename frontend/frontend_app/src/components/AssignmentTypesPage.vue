@@ -26,9 +26,11 @@
 
 <script>
 import axios from "axios";
+import SearchIcon from "./SearchIcon.vue";
 
 export default {
   name: "AssignmentTypesPage",
+  components: {SearchIcon},
   assignmentType: '',
   data() {
     return {

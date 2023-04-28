@@ -1,41 +1,49 @@
 <template>
-  <div class="admin-panel">
-    <div class="user-management">
-      <table>
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Teacher</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="course in courses" :key="course.id">
-          <td>{{ course.id }}</td>
-          <td>{{ course.name }}</td>
-          <td>{{ course.teacher }}</td>
-          <td>
-            <button class="edit-btn" @click="editCourse(course)">Edit</button>
-            <button class="delete-btn" @click="deleteCourse(course)">Delete</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+  <div id="app">
+    <div class="admin-panel">
+        <SearchField :search-term.sync="searchTerm"></SearchField>
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Teacher</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="course in courses" :key="course.id">
+            <td>{{ course.id }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.teacher }}</td>
+            <td>
+              <button class="edit-btn" @click="editCourse(course)">Edit</button>
+              <button class="delete-btn" @click="deleteCourse(course)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
+
 </template>
 
 <script lang="ts">
+import SearchField from "./SearchField.vue";
+import SearchIcon from "./SearchIcon.vue";
+
 export default {
   name: "AllCourses",
+  components: {SearchField, SearchIcon},
   data() {
     return {
+      searchTerm: '',
       courses: [
         {id: 1, name: 'Maths', teacher: 'Dan Defoe'},
-        {id: 2, name: 'Survival', email: 'Robin Crusoe'},
-        {id: 3, name: 'Nutrition', email: 'Robin Crusoe'}
-      ]
+        {id: 2, name: 'Survival', teacher: 'Robin Crusoe'},
+        {id: 3, name: 'Nutrition', teacher: 'Robin Crusoe'}
+      ],
+      course: '',
     }
   },
   methods: {
@@ -50,15 +58,7 @@ export default {
 </script>
 
 <style scoped>
-.admin-panel {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.user-management {
-  margin-top: 20px;
-}
+@import "./style/common_table.css";
 
 table {
   width: 100%;

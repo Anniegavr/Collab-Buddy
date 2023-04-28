@@ -87,7 +87,7 @@ const routes: RouteRecordRaw[] =  [
     },
     {
         path: '/admin/teachers',
-        component: () => import('./components/TeachersPage.vue')
+        component: () => import('./components/AllTeachersPage.vue')
     },
     {
         path: '/admin/assignment-types',
