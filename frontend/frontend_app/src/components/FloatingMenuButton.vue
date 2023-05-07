@@ -14,7 +14,7 @@
         <li><router-link @click="fetchData" to="/admin/skill_types">Skill Types</router-link></li>
         <li><router-link @click="fetchData" to="/admin/add_skill_types">Add Skill Type</router-link></li>
         <li><router-link @click="fetchData" to="/admin/assignment-types">Add assignment type</router-link></li>
-        <li><router-link @click="fetchData" to="/admin/add_groups">Add group</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/student_groups">Students group</router-link></li>
         <li><router-link @click="fetchData" to="/admin/all_config">View All Configurations</router-link></li>
         <li><router-link @click="fetchData" to="/admin">Admin Panel</router-link></li>
         <li><router-link @click="fetchData" to="/assignment_progress">Active Assignments</router-link></li>
