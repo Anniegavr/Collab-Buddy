@@ -26,10 +26,6 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/AdminPanel.vue')
     },
     {
-        path: '/user',
-        component: () => import('./models/User.vue')
-    },
-    {
         path: '/users',
         component: () => import('./components/UsersPage.vue')
     },
@@ -56,10 +52,6 @@ const routes: RouteRecordRaw[] =  [
     {
         path: '/profile',
         component: () => import('./components/ProfilePage.vue'),
-    },
-    {
-        path: '/admin/assignment_types',
-        component: () => import('./models/Assignment.vue')
     },
     {
         path: '/menu',
