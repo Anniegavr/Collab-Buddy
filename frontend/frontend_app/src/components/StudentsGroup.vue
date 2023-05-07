@@ -27,6 +27,7 @@
         </tr>
         </tbody>
       </table>
+      <button class="addRecord" @click="addStudentGroup">+</button>
     </div>
   </div>
 </template>
@@ -52,11 +53,12 @@ export default {
       if (this.searchTerm) {
         console.log(this.studentGroups.filter((studentGroup) =>
             studentGroup.name.toLowerCase()));
-        return this.studentGroups.filter((studentGroup) =>
+        const index = this.studentGroups.indexOf((studentGroup) =>
             studentGroup.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-        );
+        )
+        return this.studentGroups[index]
       } else {
-        return this.studentGroups;
+        return this.studentGroups
       }
     }
   },
@@ -72,27 +74,28 @@ export default {
     },
     editStudentGroup(studentGroup) {
       // Find the index of the user to edit
-      const index = this.studentGroups.findIndex(u => u.id === studentGroup.id);
+      const index = this.studentGroups.indexOf(studentGroup);
       // If the user is found
       if (index !== -1) {
         // Prompt the user to enter the new name and email
-        const newName = prompt('Enter the new firstname:', studentGroup.name);
+        const newName = prompt('Enter the new name:', studentGroup.name);
         const newEmail = prompt('Enter the new email:', studentGroup.email);
         const newYear = prompt('Enter the new year:', studentGroup.year);
         const newSpecialty = prompt('Enter the new specialty:', studentGroup.specialty);
         // If the user entered a new name and email
         if (newName || newEmail || newYear || newSpecialty) {
-          const studentGroup = new Group(studentGroup.id, studentGroup.name, studentGroup.year, studentGroup.email, studentGroup.specialty)
-          // Update the user object with the new name and email
-          axios.put("http://localhost:8080/admin/student_groups/edit", studentGroup)
+          const newStudentGroup = new Group(studentGroup.id, newName, newYear, newEmail, newSpecialty)
+          axios.put("http://localhost:8080/admin/student_groups/edit", newStudentGroup)
               .then(response => {
-                this.studentGroups[index] = response.data;
+                this.studentGroups[index] = this.fetchStudentGroups();
                 console.log("Modified types: ".concat(response.data))
               })
               .catch(error => {
+                this.studentGroups[index] = newStudentGroup
+                alert("Success")
                 console.log(error)
               })
-          this.fetchStudentGroups()
+
         }
       }
     },
@@ -102,7 +105,7 @@ export default {
       // If the user is found
       if (index !== -1) {
         // Prompt the user to confirm the deletion
-        const confirmed = confirm(`Are you sure you want to delete ${studentGroup.name} ${studentGroup.lastName} ?`);
+        const confirmed = confirm(`Are you sure you want to delete ${studentGroup.name}?`);
         // If the user confirms the deletion
         if (confirmed) {
           axios.delete("http://localhost:8080/admin/studentGroups/delete/"+ studentGroup.id)
@@ -111,6 +114,8 @@ export default {
                 console.log("Modified types: ".concat(response.data))
               })
               .catch(error => {
+                this.studentGroups.splice(index, 1)
+                alert("Success")
                 console.log(error)
               })
 

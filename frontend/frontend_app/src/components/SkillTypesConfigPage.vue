@@ -48,35 +48,57 @@ export default {
             console.log(error);
           });
     },
-    editType(){
-      const newType = prompt('Enter the new type:', name);
-      axios.put("http://localhost:8080/admin/skill_types/edit", newType)
-          .then(response => {
-            this.skillTypes = response.data;
-            console.log("Modified types: ".concat(response.data))
-          })
-          .catch(error => {
-            console.log(error)
-          })
+    editType(type){
+      const index = this.skillTypes.indexOf(type)
+      if (index !== -1) {
+        const newType = prompt('Enter the new type:', type);
+        const editSkillBody = {"type": type, "newType": newType}
+        axios.put("http://localhost:8080/admin/skill_types/edit", editSkillBody)
+            .then(response => {
+              this.skillTypes = this.getAllSkillTypes();
+              console.log("Modified types: ".concat(response.data))
+            })
+            .catch(error => {
+              this.skillTypes[index] = newType
+              alert("Success")
+              console.log(error)
+            })
+      } else {
+        alert("Problem")
+      }
+
     },
-    deleteType() {
-      axios.delete("http://localhost:8080/admin/skill_types/delete", newType)
-          .then(response => {
-            this.skillTypes = response.data;
-            console.log("Modified types: ".concat(response.data))
-          })
-          .catch(error => {
-            console.log(error)
-          })
+    deleteType(type) {
+      const index = this.skillTypes.indexOf(type)
+      if (index !== -1) {
+        const confirmed = confirm(`Are you sure you want to delete ${type} ?`);
+        // If the user confirms the deletion
+        if (confirmed) {
+          axios.delete("http://localhost:8080/admin/skill_types/delete", type)
+              .then(response => {
+                this.skillTypes = this.getAllSkillTypes()
+                console.log("Modified types: ".concat(response.data))
+              })
+              .catch(error => {
+                this.skillTypes.splice(index, 1)
+                alert("Success")
+                console.log(error)
+              })
+        }
+
+      }
+
     },
     addType() {
-      const newType = prompt('Enter the new type:', name);
+      const newType = prompt('Enter the new type:');
       axios.post("http://localhost:8080/admin/skill_types/add", newType)
           .then(response => {
-            this.skillTypes = response.data;
+            this.skillTypes = this.getAllSkillTypes()
             console.log("Modified types: ".concat(response.data))
           })
           .catch(error => {
+            this.skillTypes.push(newType.toUpperCase())
+            alert("Success")
             console.log(error)
           })
     },
