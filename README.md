@@ -55,14 +55,14 @@ Students might be dishonest in the personal information they share on this platf
 - Efficient Communication
 - Frontend
 - QA / Unit Testing
-
-## Sessions in progress
 - Soft Skills
-
-## Up next
 - Mobile
 - Project Management / Agile
+
+## Sessions in progress
 - DevOps
+
+## Up next
 - IoT
 - Public Speaking
 
