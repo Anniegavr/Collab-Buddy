@@ -13,8 +13,11 @@
     </p>
   </div>
   <div class="column_container">
-<!--      <img src="./assets/calendar.svg" alt="calendar" class="calendar_img">-->
-    <Calendar/>
+    <div class="calendar-container">
+      <div class="calendar">
+        <VDatePicker v-model="date" @change="setDate"/>
+      </div>
+    </div>
     <div id="pending_assignments">
       <div class="legend">
         <span class="lab">LAB</span>
@@ -27,11 +30,15 @@
     </div>
   </div>
 
+
+
+
 </template>
 
 <script >
 import axios from "axios";
 import Calendar from "./Calendar.vue";
+import 'v-calendar/style.css';
 
 export default {
   name: "AssignmentsProgress",
@@ -57,6 +64,7 @@ export default {
 </script>
 
 <style>
+@import "./style/general_styles.css";
 .column_container {
   flex-direction: column;
   flex-wrap: wrap;
@@ -66,8 +74,6 @@ export default {
   position: absolute;
   top: 8rem;
 }
-
-
 #pending_assignments {
   width: 70%;
   height: min-content;
