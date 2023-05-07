@@ -65,7 +65,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script >
 import axios from "axios";
 
 const STORAGE_KEY = 'vue-todomvc'

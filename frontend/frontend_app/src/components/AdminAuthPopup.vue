@@ -4,7 +4,7 @@
         <button @click="closePopup" class="closing_popup">X</button>
         <input type="text" v-model="username" placeholder="Admin username" required>
         <input type="password" v-model="password" placeholder="Admin password" required>
-        <button type="submit">Authenticate</button>
+        <button type="submit" id="admin_auth">Authenticate</button>
         <span v-if="showError" class="error-message">{{ errorMessage }}</span>
         </form>
   </div>
@@ -102,7 +102,7 @@ input {
   border-radius: 5px;
 }
 
-button {
+#admin_auth {
   margin: 10px;
   padding: 10px;
   background-color: #4CAF50;
@@ -111,12 +111,13 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-button:hover {
+#admin_auth:hover {
   background: rgba(25, 91, 6, 0.76);
 }
 
 .closing_popup {
   align-self: flex-end;
   background-color: #003566;
+  color: #dddddd;
 }
 </style>
