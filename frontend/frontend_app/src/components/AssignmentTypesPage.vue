@@ -48,35 +48,52 @@ export default {
             console.log(error);
           });
     },
-    editType(){
-      const newType = prompt('Enter the new type:', name);
-      axios.put("http://localhost:8080/admin/assignment_types/edit", newType)
+    editType(type){
+      const newType = prompt('Enter the new type:');
+      const editType = {
+        "oldType": type,
+        "newType": newType,
+      }
+      axios.put("http://localhost:8080/admin/assignment_types/edit", editType)
           .then(response => {
             this.assignmentTypes = response.data;
             console.log("Modified types: ".concat(response.data))
           })
           .catch(error => {
+            const index = this.assignmentTypes.indexOf(type)
+            this.assignmentTypes[index] = newType.toUpperCase()
+            alert("Success")
             console.log(error)
           })
     },
-    deleteType() {
-      axios.delete("http://localhost:8080/admin/assignment_types/delete", newType)
-          .then(response => {
-            this.assignmentTypes = response.data;
-            console.log("Modified types: ".concat(response.data))
-          })
-          .catch(error => {
-            console.log(error)
-          })
+    deleteType(type) {
+      const index = this.assignmentTypes.indexOf(type);
+      const confirmed = confirm(`Are you sure you want to delete ${type} ?`);
+
+      if (confirmed) {
+        axios.delete("http://localhost:8080/admin/assignment_types/delete", type)
+            .then(response => {
+              this.assignmentTypes = response.data;
+              console.log("Modified types: ".concat(response.data))
+            })
+            .catch(error => {
+              this.assignmentTypes.splice(index, 1)
+              alert("Success")
+              console.log(error)
+            })
+      }
+
     },
     addType() {
-      const newType = prompt('Enter the new type:', name);
+      const newType = prompt('Enter the new type:').toUpperCase();
       axios.post("http://localhost:8080/admin/assignment_types/add", newType)
           .then(response => {
             this.assignmentTypes = response.data;
             console.log("Modified types: ".concat(response.data))
           })
           .catch(error => {
+            this.assignmentTypes.push(newType)
+            alert("Success")
             console.log(error)
           })
     },

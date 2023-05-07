@@ -9,10 +9,8 @@
       <ul>
         <li><router-link to="/students">Students</router-link></li>
         <li><router-link @click="fetchData" to="/admin/assignment-types">Assignment Types</router-link></li>
-        <li><router-link @click="fetchData" to="/admin/add_student">Add student</router-link></li>
-        <li><router-link @click="fetchData" to="/admin/teachers">Add teacher</router-link></li>
+        <li><router-link @click="fetchData" to="/admin/teachers">All teachers</router-link></li>
         <li><router-link @click="fetchData" to="/admin/skill_types">Skill Types</router-link></li>
-        <li><router-link @click="fetchData" to="/admin/add_skill_types">Add Skill Type</router-link></li>
         <li><router-link @click="fetchData" to="/admin/assignment-types">Add assignment type</router-link></li>
         <li><router-link @click="fetchData" to="/admin/student_groups">Students group</router-link></li>
         <li><router-link @click="fetchData" to="/admin/all_config">View All Configurations</router-link></li>

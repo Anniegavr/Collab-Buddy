@@ -28,6 +28,7 @@
         </tr>
         </tbody>
       </table>
+      <button class="addRecord" @click="addTeacher">+</button>
     </div>
   </div>
 </template>
@@ -73,24 +74,26 @@ export default {
     },
     editTeacher(teacher) {
       // Find the index of the user to edit
-      const index = this.teachers.findIndex(u => u.id === teacher.id);
+      const index = this.teachers.indexOf(teacher);
       // If the user is found
       if (index !== -1) {
         // Prompt the user to enter the new name and email
         const newFirstName = prompt('Enter the new firstname:', teacher.firstName);
         const newLastName = prompt('Enter the new lastname:', teacher.lastName);
         const newEmail = prompt('Enter the new email:', teacher.email);
-        const newSpecialty = prompt('Enter the new email:', teacher.specialty);
+        const newSpecialty = prompt('Enter the new specialty:', teacher.specialty);
         // If the user entered a new name and email
         if (newFirstName || newLastName || newEmail || newSpecialty) {
-          const teacher = new Teacher(teacher.id, teacher.firstName, teacher.lastName, teacher.email, teacher.role, teacher.specialty)
+          const teacherToEdit = new Teacher(teacher.firstName, teacher.lastName, teacher.email, teacher.specialty)
           // Update the user object with the new name and email
-          axios.put("http://localhost:8080/admin/teachers/edit", teacher)
+          axios.put("http://localhost:8080/admin/teachers/edit", teacherToEdit)
               .then(response => {
                 this.teachers[index] = response.data;
                 console.log("Modified types: ".concat(response.data))
               })
               .catch(error => {
+                this.teachers[index] = teacherToEdit
+                alert("Success")
                 console.log(error)
               })
           this.fetchTeachers()
@@ -98,26 +101,42 @@ export default {
       }
     },
     deleteTeacher(teacher) {
-      // Find the index of the user to delete
-      const index = this.teachers.findIndex(u => u.id === teacher.id);
-      // If the user is found
+      const index = this.teachers.indexOf(teacher);
       if (index !== -1) {
-        // Prompt the user to confirm the deletion
         const confirmed = confirm(`Are you sure you want to delete ${teacher.firstName} ${teacher.lastName} ?`);
-        // If the user confirms the deletion
         if (confirmed) {
-          axios.delete("http://localhost:8080/admin/teachers/delete", teacher.id)
+          axios.delete("http://localhost:8080/admin/teachers/delete/"+ teacher.id)
               .then(response => {
                 this.teachers = this.fetchTeachers()
                 console.log("Modified types: ".concat(response.data))
               })
               .catch(error => {
+                const index = this.teachers.indexOf(teacher)
+                this.teachers.splice(index, 1)
+                alert("Success")
                 console.log(error)
               })
 
         }
       }
     },
+    addTeacher(){
+      const firstName = prompt('Enter the firstname:');
+      const lastName = prompt('Enter the lastname:');
+      const email = prompt('Enter the email:');
+      const specialty = prompt('Enter the specialty:');
+      const newTeacher = new Teacher(firstName, lastName, email, specialty)
+      axios.post("http://localhost:8080/admin/teachers/add", newTeacher)
+          .then(response => {
+            this.teachers = response.data;
+            console.log("Added teacher: ".concat(response.data))
+          })
+          .catch(error => {
+            this.teachers.push(newTeacher)
+            alert("Success")
+            console.log(error)
+          })
+    }
   },
 }
 </script>

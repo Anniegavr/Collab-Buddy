@@ -1,12 +1,11 @@
-export class Student {
-    constructor(id: number, name: string, email: string, year: number) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+import {User} from "./User";
+
+export class Student extends User{
+    public year: number
+
+    constructor(firstName: string, lastName: string, email: string, year: number) {
+        super(firstName, lastName, email);
         this.year = year;
     }
-    public id: number;
-    public name: string;
-    public email: string;
-    public year: number;
+
 }
