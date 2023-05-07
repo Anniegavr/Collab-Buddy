@@ -59,8 +59,8 @@ export default {
           return 'All Configurations';
         case '/assignment_progress':
           return 'Assignments Progress';
-        case '/admin/add_groups':
-          return 'Add Group';
+        case '/admin/student_groups':
+          return 'Students Group';
         case '/admin/add_student':
           return 'Add Student';
         case '/menu':

@@ -58,14 +58,18 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/SideBarMenu.vue'),
     },
     {
-        path: '/admin/add_groups',
-        component: () => import('./components/AddGroup.vue'),
+        path: '/admin/student_groups',
+        component: () => import('./components/StudentsGroup.vue'),
         meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
     },
     {
         path: '/admin/add_student',
         component: () => import('./components/AddStudentsPage.vue'),
         meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
+    },
+    {
+        path: '/admin/add_skill_types',
+        component: () => import('./components/MainPage.vue')
     },
     {
         path: '/admin/skill_types',
