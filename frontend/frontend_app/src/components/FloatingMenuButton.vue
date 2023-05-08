@@ -85,12 +85,12 @@ export default {
   position: absolute;
   bottom: 17vh;
   right: 8%;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.80);
   padding: 1.5%;
   border-radius: 10px;
   display: none;
   filter: drop-shadow(-5px 8px 5px rgba(0, 0, 0, 0.25));
-  z-index: 1;
+  z-index: 2;
 
 }
 

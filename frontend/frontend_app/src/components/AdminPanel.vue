@@ -19,7 +19,7 @@
       <router-link to="/admin/assignment-types" class="admin-panel-item">
         <h2>All Assignment Types</h2>
       </router-link>
-      <router-link to="/groups" class="admin-panel-item">
+      <router-link to="/admin/student_groups" class="admin-panel-item">
         <h2>All Groups</h2>
       </router-link>
       <router-link to="/admin/negotiations" class="admin-panel-item">
