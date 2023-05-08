@@ -63,6 +63,11 @@ const routes: RouteRecordRaw[] =  [
         meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
     },
     {
+        path: '/teacher/student_groups',
+        component: () => import('./components/StudentsGroup.vue'),
+        meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
+    },
+    {
         path: '/admin/add_skill_types',
         component: () => import('./components/MainPage.vue')
     },
