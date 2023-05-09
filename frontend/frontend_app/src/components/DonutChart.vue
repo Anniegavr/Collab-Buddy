@@ -1,8 +1,8 @@
 <template>
   <section>
     <div>
-      <canvas ref="canvas" width="600" height="500">
-        <canvas ref="canvas2" width="300" height="250"></canvas>
+      <canvas ref="canvas" width="600" height="400" style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4); border-radius: 47px">
+        <canvas ref="canvas2" width="300" height="225"></canvas>
       </canvas>
     </div>
   </section>
@@ -19,8 +19,8 @@ export default {
 
   methods: {
     plotData() {
-      const myColor = ["#1a639d","#f85900","#f5b23b","#3999d8","#35485d", "#35486d",
-      "#ca0582", "#ca8229", "#1dca29", "#297fca", "#cf29ca", "#ca294f", "#a9ca29",
+      const myColor = ["#013257", "#0d9b13","#f86700","#f5b23b","#3999d8","#35485d", "#35486d",
+        "#bfbed7", "#ca0582", "#ca8229", "#297fca", "#cf29ca", "#ca294f", "#a9ca29",
       "#29cac4", "#2c3e50", "#7fca29", "#bfbed7"];
       const myData = []
       const myLabel = []
