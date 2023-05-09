@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/AdminAuthPopup.vue')
     },
     {
-        path: '/admin_proxy',
+        path: '/admin_panel',
         component: () => import('./components/AdminPanel.vue')
     },
     {
@@ -56,6 +56,10 @@ const routes: RouteRecordRaw[] =  [
     {
         path: '/menu',
         component: () => import('./components/SideBarMenu.vue'),
+    },
+    {
+        path: '/schedule_chart',
+        component: () => import('./components/HorizontalChart.vue'),
     },
     {
         path: '/admin/student_groups',

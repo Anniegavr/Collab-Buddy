@@ -25,7 +25,7 @@ export default {
           return 'Home';
         case '/login':
           return 'Login';
-        case '/admin_proxy':
+        case '/admin_panel':
           return 'Admin Panel';
         case '/signup':
           return 'Sign Up';
@@ -51,6 +51,8 @@ export default {
           return "Assignment Types";
         case '/admin/all_courses':
           return 'All Courses';
+        case '/schedule_chart':
+          return 'Schedule Overview'
         case '/course_overview':
           return 'Course Overview';
         case '/admin/schedule-config':

@@ -42,7 +42,7 @@ export default {
               this.message = 'Signup accepted';
               this.username = "";
               this.password = "";
-              Router.push('/admin_proxy');
+              Router.push('/admin_panel');
               this.$nextTick(() => {
                 this.closePopupAndNavigate();
               });
@@ -65,7 +65,7 @@ export default {
     closePopupAndNavigate() {
       const popup = document.getElementById('admin_popup');
       popup.style.display = 'none';
-      Router.push('/admin_proxy');
+      Router.push('/admin_panel');
     },
   },
 };
