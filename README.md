@@ -1,6 +1,11 @@
 # Collab-Buddy
 Online platform to enhance the collaboration between students and teachers, as well as between teachers.
 
+# Repos that work with Collab Buddy - Gateway App
+https://github.com/Anniegavr/Gateway_App
+
+Clone both repos and start GatewayApp along with Collab Buddy and Eureka Server
+
 ## Extra Features - check the mobile app
 https://github.com/Anniegavr/Collab_Buddy_Mobile_Addition
 
