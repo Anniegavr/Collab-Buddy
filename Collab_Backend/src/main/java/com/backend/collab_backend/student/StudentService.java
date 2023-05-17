@@ -1,17 +1,13 @@
-//*************************************************//
-//          INTHER LOGISTICS ENGINEERING           //
-//*************************************************//
-
 package com.backend.collab_backend.student;
 
 import java.util.List;
 
 public interface StudentService {
-  List<Student> getAllStudents();
-  Student getStudentById(Long id);
+  List<StudentDTO> getAllStudents();
+  StudentDTO getStudentById(Long id);
 
-  Student createStudent(Student student);
+  StudentDTO createStudent(StudentDTO student);
   void deleteStudent(Long id);
 
-  Student updateStudent(Long id, Student student) throws Exception;
+  StudentDTO updateStudent(Long id, StudentDTO student);
 }

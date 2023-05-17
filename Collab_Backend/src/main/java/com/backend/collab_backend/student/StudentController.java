@@ -1,6 +1,9 @@
 package com.backend.collab_backend.student;
 
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,31 +21,20 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class StudentController {
-
+  private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
   private final StudentService studentService;
 
   @GetMapping
-  public List<Student> getAllStudents() {
+  public List<StudentDTO> getAllStudents() {
+    logger.info("Getting all students");
     return studentService.getAllStudents();
   }
 
   @GetMapping("/{id}")
-  public Student getStudentById(@PathVariable Long id) {
+  public StudentDTO getStudentById(@PathVariable Long id) {
+    logger.info("Getting student with ID: {}", id);
     return studentService.getStudentById(id);
   }
 
-  @PostMapping
-  public Student createStudent(@RequestBody Student student) {
-    return studentService.createStudent(student);
-  }
-
-  @PutMapping("/{id}")
-  public Student updateStudent(@PathVariable Long id, @RequestBody Student student) throws Exception {
-    return studentService.updateStudent(id, student);
-  }
-
-  @DeleteMapping("/{id}")
-  public void deleteStudent(@PathVariable Long id) {
-    studentService.deleteStudent(id);
-  }
 }
+
