@@ -139,7 +139,7 @@ export default {
         "year": year,
       }
 
-      axios.post("http://localhost:8080/admin/students/add", newStudent)
+      axios.post("http://localhost:8080/admin/add_student", newStudent)
           .then(response => {
             this.students.push(response.data);
 

@@ -126,7 +126,7 @@ export default {
       const email = prompt('Enter the email:');
       const specialty = prompt('Enter the specialty:');
       const newTeacher = new Teacher(firstName, lastName, email, specialty)
-      axios.post("http://localhost:8080/admin/teachers/add", newTeacher)
+      axios.post("http://localhost:8080/admin/add_teacher", newTeacher)
           .then(response => {
             this.teachers = response.data;
             console.log("Added teacher: ".concat(response.data))
