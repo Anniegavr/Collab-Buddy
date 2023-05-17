@@ -124,17 +124,20 @@ public class AdminController {
   @GetMapping("/{id}")
   public ResponseEntity<String> getAdministratorByAdministratorId(@PathVariable Long id) {
     logger.info("Received request to get administrator by ID: {}", id);
+    administratorService.getAdministratorByAdministratorId(id);
     return ResponseEntity.ok("JonathanD: Dean, HR Manager");
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<String> updateAdministrator(@PathVariable Long id, @RequestBody Integer body) {
     logger.info("Received request to update administrator with ID: {}", id);
+    administratorService.updateAdministrator(id, body);
     return ResponseEntity.ok("Success");
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteAdministrator(@PathVariable Long id) {
+    administratorService.deleteAdministrator(id);
     logger.info("Received request to delete administrator with ID: {}", id);
     return ResponseEntity.ok("Success, you deleted admin with ID "+id);
   }

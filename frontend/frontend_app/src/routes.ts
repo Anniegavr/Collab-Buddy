@@ -54,10 +54,6 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/ProfilePage.vue'),
     },
     {
-        path: '/menu',
-        component: () => import('./components/SideBarMenu.vue'),
-    },
-    {
         path: '/schedule_chart',
         component: () => import('./components/HorizontalChart.vue'),
     },
