@@ -58,6 +58,14 @@ const routes: RouteRecordRaw[] =  [
         component: () => import('./components/HorizontalChart.vue'),
     },
     {
+        path: '/teacher_panel_proxy',
+        component: () => import('./components/AdminAuthPopup.vue'),
+    },
+    {
+        path: '/teacher_panel',
+        component: () => import('./components/TeacherPanel.vue'),
+    },
+    {
         path: '/admin/student_groups',
         component: () => import('./components/StudentsGroup.vue'),
         meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
@@ -106,6 +114,12 @@ const routes: RouteRecordRaw[] =  [
     {
         path: '/admin/all_students',
         component: () => import('./components/AllStudents.vue'),
+        meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
+    },
+
+    {
+        path: '/admin/all_admins',
+        component: () => import('./components/AllAdmins.vue'),
         meta: { requiresAdmin: true } // add meta field to mark the route as requiring admin privileges
     },
 ]

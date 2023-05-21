@@ -86,7 +86,7 @@ export default {
         if (newFirstName || newLastName || newEmail || newSpecialty) {
           const teacherToEdit = new Teacher(teacher.firstName, teacher.lastName, teacher.email, teacher.specialty)
           // Update the user object with the new name and email
-          axios.put("http://localhost:8080/admin/teachers/edit", teacherToEdit)
+          axios.put("http://localhost:8080/admin/teachers/edit/", teacherToEdit)
               .then(response => {
                 this.teachers[index] = response.data;
                 console.log("Modified types: ".concat(response.data))
@@ -125,7 +125,12 @@ export default {
       const lastName = prompt('Enter the lastname:');
       const email = prompt('Enter the email:');
       const specialty = prompt('Enter the specialty:');
-      const newTeacher = new Teacher(firstName, lastName, email, specialty)
+      const newTeacher = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "specialty": specialty
+      }
       axios.post("http://localhost:8080/admin/add_teacher", newTeacher)
           .then(response => {
             this.teachers = response.data;

@@ -1,9 +1,18 @@
 <template>
-<div >
+  <div class="menu" :class="{ active: menuActive }" style="z-index: 2">
+    <ul>
+      <li><button @click="closemenu" class="closeMenuB">X
+      </button></li>
+      <li><router-link to="/students">Students</router-link></li>
+      <li><router-link @click="fetchData" to="/home">Home</router-link></li>
+      <li><router-link @click="fetchData" to="/profile">Profile</router-link></li>
+    </ul>
+  </div>
+  <div >
     <nav id="menu">
-      <router-link to="/" class="home-link">
+      <v-button class="home-link" @click="toggleMenu">
         <img class="menu_icon" src="./icons/homeIcon.png" alt="Home">
-      </router-link>
+      </v-button>
 
       <p id="menu-title">{{title}}</p>
 
@@ -17,25 +26,65 @@
 
       </div>
     </nav>
-</div>
-
+  </div>
 </template>
 
-<script setup lang="ts">
-import { defineProps } from 'vue'
-import IconHome from "./icons/IconHome.vue";
-import ProgressIcon from "./icons/ProgressIcon.vue";
-import SearchField from "./SearchField.vue";
-const props = defineProps({
-  title: {
-    type: String,
-    required: true
+
+<script>
+import { defineProps, ref } from 'vue'
+import Api from "../Api.ts";
+export default {
+  name: "NavigationBar",
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+
+  },
+  data() {
+    return {
+      menuActive: false,
+    }
+  },
+  methods: {
+    closemenu() {
+      this.menuActive = false;
+    },
+    toggleMenu() {
+      this.menuActive = !this.menuActive;
+    },
+    async fetchData() {
+      try {
+        const response = await Api.get('/admin');
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  setup(props) {
+    const title = ref(props.title);
+    return {
+      title
+    }
   }
-})
+}
 </script>
 
 <style scoped>
 @import "style/general_styles.css";
+.closeMenuB {
+  font-size: 0.7svw;
+  float: right;
+  border-width: 3px;
+  font-weight: bolder;
+  background-color: transparent;
+  border-color: #486580;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.18);
+}
 #menu {
   position: fixed;
   top: 0;
@@ -90,5 +139,36 @@ const props = defineProps({
   cursor: pointer;
   z-index: 2;
   margin-left: 2vw;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  bottom: 0vh;
+  left: 0;
+  background-color: #e4f6fc;
+  padding: 1.5%;
+  border-radius: 0 10px;
+  filter: drop-shadow(-5px 8px 5px rgba(0, 0, 0, 0.25));
+  z-index: 2;
+
+}
+
+.menu.active {
+
+  display: block;
+  height: 100vh;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-size: large;
 }
 </style>

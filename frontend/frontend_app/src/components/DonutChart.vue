@@ -86,7 +86,7 @@ export default {
 
               ctx.font="2.5svh Helvetica"
 
-              ctx.fillText(myLabel[i]+" "+precentage.toFixed(2)+"%",end[0]+textOffset,end[1]-4);
+              ctx.fillText(myLabel[i]+" "+myData[i]+" hrs",end[0]+textOffset,end[1]-4);
 
               lastend += Math.PI*2*(myData[i]/myTotal);
             }

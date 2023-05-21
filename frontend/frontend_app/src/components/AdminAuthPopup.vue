@@ -34,7 +34,7 @@ export default {
         username: this.username,
         password: this.password
       }
-      axios.post('http://localhost:8080/api/auth/signin', body, {
+      axios.post('http://localhost:8080/admin/auth/signin', body, {
       })
           .then(response => {
             if (response.status === 200) {

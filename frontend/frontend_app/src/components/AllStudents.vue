@@ -96,7 +96,7 @@ export default {
             "email": newEmail,
             "specialty": newSpecialty,
           }
-          axios.put('http://localhost:8080/students', studentToEdit)
+          axios.put('http://localhost:8080/admin/update_student/'+student.id, studentToEdit)
               .then(response => {
                 this.students = this.fetchStudents()
                 console.log(response.status+"\n "+response.data)
@@ -112,7 +112,8 @@ export default {
       if (index !== -1) {
         const confirmed = confirm(`Are you sure you want to delete ${student.firstName} ${student.lastName} ?`);
         if (confirmed) {
-          axios.delete('http://localhost:8080/students'+ student.id)
+          console.log("aha, id "+student.id)
+          axios.delete('http://localhost:8080/admin/del_student/'+ student.id)
               .then(response => {
                 this.students = this.fetchStudents()
                 console.log(response.status+"\n "+response.data)

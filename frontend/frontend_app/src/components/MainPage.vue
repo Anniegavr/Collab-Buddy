@@ -12,6 +12,7 @@
     <router-link to="/profile" class="common_link">
         My Profile
     </router-link>
+    <HorizontalChart></HorizontalChart>
   </div>
   <div id="right_part" class="course-list">
     <div v-for="(course, index) in courses" :key="index" class="course-item">
@@ -28,9 +29,10 @@
 import DonutGraph from "./DonutGraph.vue";
 import DonutChart from "./DonutChart.vue";
 import axios from "axios";
+import HorizontalChart from "./HorizontalChart.vue";
 
 export default {
-  components: {DonutChart, DonutGraph},
+  components: {HorizontalChart, DonutChart, DonutGraph},
   data() {
     return {
       courses: []

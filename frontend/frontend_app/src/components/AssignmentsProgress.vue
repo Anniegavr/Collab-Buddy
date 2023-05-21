@@ -18,14 +18,14 @@
         <VDatePicker v-model="date" @change="setDate"/>
       </div>
     </div>
-    <div id="pending_assignments">
+    <div id="pending_assignments" style="margin-top: 3vh">
       <div class="legend">
         <span class="lab">LAB</span>
         <span class="project">PROJECT</span>
         <span class="reading">READING</span>
       </div>
       <div v-for="assignment in assignments" :key="assignment.id" class="assignments_list">
-        <p :class="['one_assignment', assignment.assignmentType]">{{assignment.name}} {{assignment.description}}</p>
+        <p :class="['one_assignment', assignment.type]">{{assignment.name}} {{assignment.description}}</p>
       </div>
     </div>
   </div>

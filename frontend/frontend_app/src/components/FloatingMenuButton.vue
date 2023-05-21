@@ -15,6 +15,7 @@
         <li><router-link @click="fetchData" to="/admin/student_groups">Students group</router-link></li>
         <li><router-link @click="fetchData" to="/admin/all_config">View All Configurations</router-link></li>
         <li><router-link @click="fetchData" to="/admin">Admin Panel</router-link></li>
+        <li><router-link @click="fetchData" to="/teacher_panel_proxy">Teacher Panel</router-link></li>
         <li><router-link @click="fetchData" to="/assignment_progress">Active Assignments</router-link></li>
         <li><router-link @click="fetchData" to="/teacher/release_assignment">Release Assignment</router-link></li>
       </ul>

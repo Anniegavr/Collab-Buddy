@@ -4,8 +4,8 @@
       <router-link to="/admin" class="admin-panel-item">
         <TotalRequests class="total_req"/>
       </router-link>
-      <router-link to="/users" class="admin-panel-item">
-        <h2>All Users</h2>
+      <router-link to="/admin/all_admins" class="admin-panel-item">
+        <h2>All Admins</h2>
       </router-link>
       <router-link to="/students" class="admin-panel-item">
         <h2>All Students</h2>
@@ -28,6 +28,15 @@
       <router-link to="/admin/schedule-config" class="admin-panel-item">
         <h2>Student Schedule Config</h2>
       </router-link>
+      <button @click="goToEurekaPage()"  class="admin-panel-item">
+        <h2>Servers Instances Status</h2>
+      </button>
+      <button @click="goToPrometheus()"  class="admin-panel-item">
+        <h2>Server Stats</h2>
+      </button>
+      <button @click="goToGatewayStats()"  class="admin-panel-item">
+        <h2>All Available Service Stats</h2>
+      </button>
 
     </div>
   </div>
@@ -44,6 +53,15 @@ export default {
   methods: {
     loadContent() {
       window.location.reload()
+    },
+    goToEurekaPage() {
+      window.open('http://localhost:8761', '_blank');
+    },
+    goToPrometheus() {
+      window.open('http://localhost:8090/actuator/prometheus', '_blank');
+    },
+    goToGatewayStats() {
+      window.open('http://localhost:8090/actuator', '_blank');
     }
   }
 };

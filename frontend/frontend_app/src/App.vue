@@ -27,14 +27,18 @@ export default {
           return 'Login';
         case '/admin_panel':
           return 'Admin Panel';
+        case '/teacher_panel':
+          return 'Teacher Panel';
+        case '/teacher_panel_proxy':
+          return 'Teacher Panel';
         case '/signup':
           return 'Sign Up';
         case '/home':
           return 'Home';
         case '/todo':
           return 'My To Do List'
-        case '/users':
-          return "All Users"
+        case '/admin/all_admins':
+          return "All Admins"
         case '/admin/teachers':
           return "All Teachers";
         case '/admin':

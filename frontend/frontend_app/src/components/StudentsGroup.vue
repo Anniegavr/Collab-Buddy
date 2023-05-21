@@ -85,7 +85,7 @@ export default {
         // If the user entered a new name and email
         if (newName || newEmail || newYear || newSpecialty) {
           const newStudentGroup = new Group(studentGroup.id, newName, newYear, newEmail, newSpecialty)
-          axios.put("http://localhost:8080/admin/student_groups/edit", newStudentGroup)
+          axios.put("http://localhost:8080/admin/student_groups/edit/", newStudentGroup)
               .then(response => {
                 this.studentGroups[index] = this.fetchStudentGroups();
                 console.log("Modified types: ".concat(response.data))

@@ -53,7 +53,7 @@ export default {
       if (index !== -1) {
         const newType = prompt('Enter the new type:', type);
         const editSkillBody = {"type": type, "newType": newType}
-        axios.put("http://localhost:8080/admin/skill_types/edit", editSkillBody)
+        axios.put("http://localhost:8080/admin/skill_types/edit/", editSkillBody)
             .then(response => {
               this.skillTypes = this.getAllSkillTypes();
               console.log("Modified types: ".concat(response.data))
@@ -74,7 +74,7 @@ export default {
         const confirmed = confirm(`Are you sure you want to delete ${type} ?`);
         // If the user confirms the deletion
         if (confirmed) {
-          axios.delete("http://localhost:8080/admin/skill_types/delete", type)
+          axios.delete("http://localhost:8080/admin/skill_types/delete/", type)
               .then(response => {
                 this.skillTypes = this.getAllSkillTypes()
                 console.log("Modified types: ".concat(response.data))
