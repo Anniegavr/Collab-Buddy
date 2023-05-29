@@ -7,7 +7,6 @@ import java.util.List;
 public interface AdministratorService {
   List<AdministratorDTO> getAllAdministrators();
   Administrator getAdministratorByAdministratorId(Long id);
-  Administrator createAdministrator(AdministratorDTO administrator);
-  Administrator updateAdministrator(Long id, int administratorAge);
+  AdministratorDTO createAdministrator(AdministratorDTO administrator);
   ResponseEntity.BodyBuilder deleteAdministrator(Long id);
 }

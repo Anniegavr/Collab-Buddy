@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build and Test Backend Spring Boot Application') {
+            steps {
+                sh 'cd frontend/frontend_app && npm run build'
+            }
+        }
+    }
+    post {
+        failure {
+            mail to: 'agavrilita@inthergroup.com',
+                 subject: "Build failed: ${currentBuild.fullDisplayName}",
+                 body: "Something went wrong with ${env.BUILD_URL}"
+        }
+    }
+}

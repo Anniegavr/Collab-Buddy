@@ -1,7 +1,3 @@
-//*************************************************//
-//          INTHER LOGISTICS ENGINEERING           //
-//*************************************************//
-
 package com.backend.collab_backend.schedule;
 
 import jakarta.persistence.Column;
@@ -11,13 +7,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Schedule {
   @SequenceGenerator(
           name="schedule_sequence",
@@ -32,20 +32,12 @@ public class Schedule {
   private Long id;
 
   @Column(nullable = false)
-  private String title;
+  private LocalDate date;
 
   @Column(nullable = false)
-  private LocalDateTime startDate;
-
+  private String freeTimeLeft;
   @Column(nullable = false)
-  private LocalDateTime endDate;
-
-  @Column(nullable = false)
-  private String description;
-
-  //  @ManyToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name = "student_id", nullable = false)
-  @Column(name = "student_id")
-  private Long studentId;
+  private String groupId;
+  private Long assignmentId;
 
 }

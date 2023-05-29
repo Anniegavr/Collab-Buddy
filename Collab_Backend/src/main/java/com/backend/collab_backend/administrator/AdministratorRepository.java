@@ -9,8 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator, Long> {
-  @Transactional
-  @Modifying
-  @Query("update Administrator a set a.age = :age")
-  Administrator updateAgeBy(@Param("age") Integer age);
+  void deleteAdministratorById(Long id);
 }

@@ -56,7 +56,6 @@ public class TeacherServiceImpl implements TeacherService {
 
     teacherToUpdate.setFirstName(teacher.getFirstName());
     teacherToUpdate.setLastName(teacher.getLastName());
-    teacherToUpdate.setAge(teacher.getAge());
     teacherToUpdate.setEmail(teacher.getEmail());
     teacherToUpdate.setCourses(teacher.getCourses());
     teacherRepository.save(teacherToUpdate);

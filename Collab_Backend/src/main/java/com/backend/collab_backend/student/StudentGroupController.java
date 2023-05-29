@@ -16,6 +16,7 @@ public class StudentGroupController {
   @GetMapping("/all")
   public ResponseEntity<List<StudentGroup>> getAllGroups(){
     List<StudentGroup> groups = new ArrayList<>();
+
     groups.add(new StudentGroup(1L, "Group 1", 2021, "group1@example.com", "Specialty 1"));
     groups.add(new StudentGroup(2L, "Group 2", 2022, "group2@example.com", "Specialty 2"));
     groups.add(new StudentGroup(3L, "Group 3", 2023, "group3@example.com", "Specialty 3"));

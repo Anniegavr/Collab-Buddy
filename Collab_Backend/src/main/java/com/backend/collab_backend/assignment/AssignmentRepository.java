@@ -12,5 +12,5 @@ public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
   Optional<Assignment> findAssignmentByTeacherId(Long teacherId);
   Optional<Assignment> findAssignmentByTeacherNameContaining(String teacherName);
   Optional<Assignment> findAssignmentByTitleContaining(String containing);
-  List<Assignment> findAllByGroupsIn(List<String> groups);
+  List<Assignment> findAllByGroupIdIn(List<String> groups);
 }

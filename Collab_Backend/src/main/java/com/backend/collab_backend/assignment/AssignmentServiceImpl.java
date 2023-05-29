@@ -25,10 +25,10 @@ public class AssignmentServiceImpl implements AssignmentService {
 
   @Override
   public List<AssignmentDTO> findAllAssignments(List<String> groups) {
-    List<Assignment> allAssignments = assignmentRepository.findAllByGroupsIn(groups);
+    List<Assignment> allAssignments = assignmentRepository.findAllByGroupIdIn(groups);
     List<AssignmentDTO> returnListOfAssignments = new ArrayList<>();
     if (allAssignments.isEmpty()){
-
+      return new ArrayList<>();
     } else {
       for (Assignment assignment : allAssignments){
         returnListOfAssignments.add(convertAssignmentToDTO(assignment));
@@ -39,7 +39,6 @@ public class AssignmentServiceImpl implements AssignmentService {
 
   @Override
   public AssignmentDTO findAssignmentById(Long id) {
-    AssignmentDTO assignmentDTO = new AssignmentDTO();
     Assignment assignment = assignmentRepository.findById(id).orElseGet(Assignment::new);
 
     return convertAssignmentToDTO(assignment);
@@ -52,7 +51,6 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     TeacherDTO teacherName = teacherService.getTeacherByTeacherId(assignment.getTeacherId());
     assignmentDTO.setTeacherName(teacherName.getFirstName()+" "+teacherName.getLastName());
-    assignmentDTO.setDueDate(assignment.getDueDate());
     return assignmentDTO;
   }
 
@@ -67,7 +65,7 @@ public class AssignmentServiceImpl implements AssignmentService {
     assignmentDTO.setTitle(assignment.getTitle());
     assignmentDTO.setDescription(assignment.getDescription());
     assignmentDTO.setTeacherName(teacherName.getFirstName()+" "+teacherName.getLastName());
-    assignmentDTO.setDueDate(assignment.getDueDate());
+
 //        if (teacher == null || !assignment.getTeacher().equals(teacher)) {
 //            return assignment;
 //        }
@@ -81,7 +79,6 @@ public class AssignmentServiceImpl implements AssignmentService {
 
   @Override
   public AssignmentDTO updateAssignment(Long id, AssignmentDTO assignment) {
-    //TODO implement
     return new AssignmentDTO();
   }
 
@@ -96,7 +93,6 @@ public class AssignmentServiceImpl implements AssignmentService {
     Assignment assignment1 = new Assignment();
     assignment1.setTitle(assignment.getTitle());
     assignment1.setDescription(assignment.getDescription());
-    assignment1.setDueDate(assignment.getDueDate());
 
     assignmentRepository.save(assignment1);
     return assignment;

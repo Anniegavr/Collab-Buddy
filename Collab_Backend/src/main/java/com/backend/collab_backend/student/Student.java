@@ -14,8 +14,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Student extends AbstractUser {
-  @Column(name = "year", nullable = false)
+  @Column(nullable = false)
   private Integer year;
-  @Column(name="specialty", nullable = false)
+  @Column(nullable = false)
   private String specialty;
+  @Column(nullable = false)
+  private String groupId;
 }

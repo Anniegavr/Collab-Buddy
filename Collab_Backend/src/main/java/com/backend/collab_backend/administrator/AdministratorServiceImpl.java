@@ -30,13 +30,14 @@ public class AdministratorServiceImpl implements AdministratorService{
 
   public AdministratorDTO convertRealToDTOAdmin(Administrator administrator) {
     AdministratorDTO adminDTO = new AdministratorDTO();
+    adminDTO.id = administrator.getId();
     adminDTO.firstName = administrator.getFirstName();
     adminDTO.lastName = administrator.getLastName();
     adminDTO.email = administrator.getEmail();
-    adminDTO.age = administrator.getAge();
     adminDTO.role = administrator.getRole();
     adminDTO.secondRole = administrator.getSecondRole();
     adminDTO.thirdRole = administrator.getThirdRole();
+    adminDTO.username = administrator.getUsername();
     adminDTO.specialty = administrator.getSpecialty();
     return adminDTO;
   }
@@ -48,27 +49,26 @@ public class AdministratorServiceImpl implements AdministratorService{
   }
 
   @Override
-  public Administrator createAdministrator(AdministratorDTO administrator) {
+  public AdministratorDTO createAdministrator(AdministratorDTO administrator) {
     Administrator administrator1 = convertDTOtoRealAdmin(administrator);
-    return administratorRepository.save(administrator1);
+    administratorRepository.save(administrator1);
+    return administrator;
   }
   Administrator convertDTOtoRealAdmin(AdministratorDTO administratorDTO) {
     Administrator administrator = new Administrator();
+    System.out.println(administratorDTO.firstName);
     administrator.setFirstName(administratorDTO.firstName);
     administrator.setLastName(administratorDTO.lastName);
     administrator.setEmail(administratorDTO.email);
+    System.out.println(administratorDTO.email);
     administrator.setSpecialty(administratorDTO.specialty);
-    administrator.setAge(administratorDTO.age);
     administrator.setRole(administratorDTO.role);
     administrator.setSecondRole(administratorDTO.secondRole);
     administrator.setThirdRole(administratorDTO.thirdRole);
-    administrator.setUsername(administrator.getFirstName().toLowerCase().charAt(0)+administrator.getLastName().toLowerCase());
+    administrator.setUsername(administratorDTO.username);
     return administrator;
   }
 
-  public Administrator updateAdministrator(Long id, int age) {
-    return administratorRepository.updateAgeBy(age);
-  }
 
   @Override
   public ResponseEntity.BodyBuilder deleteAdministrator(Long id) {

@@ -1,0 +1,78 @@
+.admin-panel {
+    max-width: 100vw;
+    padding: 20px;
+    margin-top: 2vh;
+}
+
+.common_table {
+    width: fit-content;
+    vertical-align: center;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.common_table th, .common_table td {
+    padding: 6px;
+    vertical-align: middle;
+    border-collapse: collapse;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.18);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.common_table th {
+    color: white;
+    background-image: linear-gradient( 180deg,  rgba(41,125,182,1) 3.6%, rgba(77,58,151,1) 51%, rgba(103,55,115,1) 92.9% );
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.common_table tbody td {
+    text-align: center;
+    padding: 10px;
+    border: #1a1a1a;
+    font-size: large;
+    color: #1a1a1a;
+}
+
+.edit-btn, .delete-btn {
+    background: linear-gradient(90deg, #705CA6 0%, rgba(97, 68, 173, 0.98) 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    opacity: 0.8;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background-color: #ddd;
+}
+
+.addRecord {
+    color: rgba(97, 68, 173, 0.98);
+    font-size: x-large;
+    border-color: rgba(97, 68, 173, 0.98);
+    border-radius: 15px;
+    margin-top: 1em;
+    filter: drop-shadow(-5px 2px 5px rgba(0, 0, 0, 0.25));
+}
+
+.table_search {
+    align-self: flex-end;
+    margin-top: 2vh;
+}
+
+.table_search_icon {
+    min-width: available;
+    min-height: fit-content;
+}

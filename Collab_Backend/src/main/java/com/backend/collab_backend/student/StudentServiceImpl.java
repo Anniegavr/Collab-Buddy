@@ -19,6 +19,7 @@ public class StudentServiceImpl implements StudentService {
 
   public StudentDTO convertRealToDTOStudent(Student student) {
     StudentDTO studentDTO = new StudentDTO();
+    studentDTO.id = student.getId();
     studentDTO.firstName = student.getFirstName();
     studentDTO.lastName = student.getLastName();
     studentDTO.email = student.getEmail();
@@ -59,13 +60,14 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public StudentDTO createStudent(StudentDTO student) {
     Student student1 = convertDTOtoRealStudent(student);
+    student1.setUsername(student1.getFirstName().toLowerCase().charAt(0)+student1.getLastName().toLowerCase());
     studentRepository.save(student1);
     return student;
   }
 
   @Override
   public void deleteStudent(Long id) {
-    studentRepository.deleteById(id);
+    studentRepository.deleteStudentById(id);
   }
 
   @Override
