@@ -107,7 +107,7 @@ public class AdminController {
 
   @PostMapping("/auth/signin")
   public ResponseEntity<String> authenticateUser(@RequestBody String request) {
-    System.out.println("Got request for "+request);
+    logger.info("Got signin request for [{}]", request);
     return ResponseEntity.ok("Success");
   }
   @DeleteMapping("/del_student/{id}")

@@ -9,36 +9,105 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.backend.collab_backend</groupId>
-  <artifactId>eureka_server</artifactId>
+  <artifactId>Collab_Backend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>eureka_server</name>
-  <description>eureka_server</description>
+  <name>Collab_Backend</name>
+  <description>Collab_Backend</description>
   <properties>
     <java.version>17</java.version>
-    <spring-cloud.version>2022.0.2</spring-cloud.version>
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>29.0-jre</version>
     </dependency>
 
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>0.11.5</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>0.11.5</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-jackson</artifactId>
+      <version>0.11.5</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-rest</artifactId>
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-security</artifactId>-->
+<!--    </dependency>-->
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+      <version>3.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
   </dependencies>
   <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
   </dependencyManagement>
 
   <build>
@@ -46,18 +115,78 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
       </plugin>
+<!--      <plugin>-->
+<!--        <groupId>com.github.eirslett</groupId>-->
+<!--        <artifactId>frontend-maven-plugin</artifactId>-->
+<!--        &lt;!&ndash; Use the latest released version:-->
+<!--                    https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ &ndash;&gt;-->
+<!--        <version>1.11.2</version>-->
+<!--        <configuration>-->
+<!--          <nodeVersion>v4.6.0</nodeVersion>-->
+<!--          <workingDirectory>/frontend/frontend_app</workingDirectory>-->
+<!--        </configuration>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>install node and npm</id>-->
+<!--            <goals>-->
+<!--              <goal>install-node-and-npm</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <nodeVersion>v15.4.0</nodeVersion>-->
+<!--              <npmVersion>7.3.0</npmVersion>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--          <execution>-->
+<!--            <id>npm install</id>-->
+<!--            <goals>-->
+<!--              <goal>npm</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <arguments>install</arguments>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--          <execution>-->
+<!--            <id>npm run build</id>-->
+<!--            <goals>-->
+<!--              <goal>npm</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <arguments>run build</arguments>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
+<!--      <plugin>-->
+<!--        <artifactId>maven-resources-plugin</artifactId>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>copy-build-folder</id>-->
+<!--            <phase>process-classes</phase>-->
+<!--            <goals>-->
+<!--              <goal>copy-resources</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <resources>-->
+<!--                <resource>-->
+<!--                  <directory>/frontend/frontend_app/dist</directory>-->
+<!--                </resource>-->
+
+<!--              </resources>-->
+<!--              <outputDirectory>${basedir}/target/classes/static</outputDirectory>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <id>netflix-candidates</id>
-      <name>Netflix Candidates</name>
-      <url>https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
 
 </project>
