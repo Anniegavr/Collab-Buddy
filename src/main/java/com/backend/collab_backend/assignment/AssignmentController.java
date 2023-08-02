@@ -1,7 +1,3 @@
-//*************************************************//
-//          INTHER LOGISTICS ENGINEERING           //
-//*************************************************//
-
 package com.backend.collab_backend.assignment;
 
 import lombok.RequiredArgsConstructor;
